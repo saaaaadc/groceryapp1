@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:groceryapp1/homepage.dart';
 import 'package:groceryapp1/refaction.dart';
 import 'package:groceryapp1/resetpassword.dart';
@@ -54,7 +55,9 @@ class login extends StatelessWidget {
             ),
 
           ),
-          ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => home(),));}, child:Text("Skip")),
+          ElevatedButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => home(),));
+            }, child:Text("Skip")),
           SizedBox(height: 100,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

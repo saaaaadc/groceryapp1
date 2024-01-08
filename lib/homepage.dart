@@ -1,7 +1,11 @@
 import 'dart:html';
 
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:groceryapp1/order.dart';
+import 'package:groceryapp1/profile.dart';
 import 'package:groceryapp1/scafffold_modify.dart';
+import 'package:groceryapp1/wallet.dart';
 
 class home extends StatefulWidget {
    home({super.key});
@@ -11,24 +15,37 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
+  int currentTabIndex=0;
+  late List<Widget>pages;
+  late Widget currentPage;
+  late home homepage;
+  late wallet wallets;
+  late Ordercart order;
+  late Profile profile;
 bool icecream = false,pizza = false, burger = false, salad = false;
 
   @override
+  void initState() {
+    homepage=home();
+    wallets=wallet();
+    order=Ordercart();
+    profile=Profile();
+    pages=[homepage,order,wallets,profile];
+    super.initState();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.only(top: 50,left: 20),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
-        Text('Hello User',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)
+                Text('Hello User',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)
         ),
                 Container(
-                  margin: EdgeInsets.only(right: 20),
+                  margin: EdgeInsets.only(right: 20,top: 50),
                   padding: EdgeInsets.all(13),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -138,6 +155,25 @@ bool icecream = false,pizza = false, burger = false, salad = false;
           ],
         ),
       ),
+      bottomNavigationBar: CurvedNavigationBar(
+        height: 65,
+        backgroundColor: Colors.deepPurple,
+        color: Colors.deepPurple.shade200,
+        animationDuration: Duration(milliseconds: 500),
+        onTap:(int index){
+          setState(() {
+            currentTabIndex=index;
+          });
+        },
+        items: [
+          Icon(Icons.home_outlined,color: Colors.white,),
+          Icon(Icons.shopping_bag_outlined,color: Colors.white,),
+          Icon(Icons.payment_outlined,color: Colors.white,),
+          Icon(Icons.person,color: Colors.white,),
+
+        ],
+      ),
+
     );
   }
   Widget showItem(){
