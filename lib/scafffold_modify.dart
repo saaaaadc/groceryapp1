@@ -12,8 +12,7 @@ class customScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:body ,
-      bottomNavigationBar:showBottomnavbar ? bottom(initialIndex:initialIndex) : null,
+     
     );
   }
 }

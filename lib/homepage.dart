@@ -101,15 +101,37 @@ bool icecream = false,pizza = false, burger = false, salad = false;
             ),
             SizedBox(height: 30,),
             Container(
-              child: Row(
-                children: [
-                  Image(image: AssetImage("images/Burger-43.png"),height: 120,width: 120,fit: BoxFit.cover,),
-                  Column(
+              margin: EdgeInsets.only(right: 20),
+              child: Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Royal Cheese Burger")
+                      Image(image: AssetImage("images/Burger-43.png"),height: 120,width: 120,fit: BoxFit.cover,),
+                      SizedBox(height: 20,),
+
+                      Column(
+                        children: [
+
+                          Container(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: Text("Royal Cheese Burger")),
+                          SizedBox(height: 5,),
+                          Container(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: Text("Barbeque Burger")),
+                          SizedBox(height: 5,),
+                          Container(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: Text("\$28",style: TextStyle(fontWeight: FontWeight.bold),)),
+                        ],
+                      )
                     ],
-                  )
-                ],
+                  ),
+                ),
               ),
             )
 
