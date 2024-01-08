@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:groceryapp1/details.dart';
 import 'package:groceryapp1/order.dart';
 import 'package:groceryapp1/profile.dart';
 import 'package:groceryapp1/scafffold_modify.dart';
@@ -15,27 +16,17 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-  int currentTabIndex=0;
-  late List<Widget>pages;
-  late Widget currentPage;
-  late home homepage;
-  late wallet wallets;
-  late Ordercart order;
-  late Profile profile;
+
 bool icecream = false,pizza = false, burger = false, salad = false;
 
   @override
   void initState() {
-    homepage=home();
-    wallets=wallet();
-    order=Ordercart();
-    profile=Profile();
-    pages=[homepage,order,wallets,profile];
     super.initState();
   }
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
+        margin: EdgeInsets.only(top: 50,left: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -45,47 +36,49 @@ bool icecream = false,pizza = false, burger = false, salad = false;
                 Text('Hello User',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)
         ),
                 Container(
-                  margin: EdgeInsets.only(right: 20,top: 50),
-                  padding: EdgeInsets.all(13),
+                  margin: EdgeInsets.only(right: 20),
+                  padding: EdgeInsets.all(3),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: Colors.black,
-
                   ),
                   child: Icon(Icons.shopping_cart,color: Colors.white,),
                 )
               ],
             ),
-        SizedBox(height: 30,),
+        SizedBox(height: 20,),
         Text('Delicious Food',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),
         ),
         Text('Discover and Get Great Food',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),),
             SizedBox(height: 20,),
-            showItem(),
             Container(
                 margin: EdgeInsets.only(right: 20),
-                child: SizedBox(height: 20,)),
+                child:showItem()),
+            SizedBox(height: 30,),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: Material(
-                      elevation: 6,
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        padding: EdgeInsets.all(14),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image(image: AssetImage('images/pngtree-ice-cream-dessert-realistic-white-background-transparent-png-image_9047252.png'),height: 150,width: 150,fit: BoxFit.cover ),
-                            Text("Ice Cream",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)),
-                            SizedBox(height: 5,),
-                            Text("Fresh and Healthy"),
-                            SizedBox(height: 5,),
-                            Text("\$25",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black))
-                          ],
+                  GestureDetector(
+                    onTap: Navigator.push(context, MaterialPageRoute(builder: (context) => Details(),)),
+                    child: Container(
+                      margin: EdgeInsets.all(4),
+                      child: Material(
+                        elevation: 5,
+                        borderRadius: BorderRadius.circular(20),
+                        child: Container(
+                          padding: EdgeInsets.all(14),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image(image: AssetImage('images/pngtree-ice-cream-dessert-realistic-white-background-transparent-png-image_9047252.png'),height: 150,width: 150,fit: BoxFit.cover ),
+                              Text("Ice Cream",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)),
+                              SizedBox(height: 5,),
+                              Text("Fresh and Healthy"),
+                              SizedBox(height: 5,),
+                              Text("\$25",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black))
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -150,29 +143,84 @@ bool icecream = false,pizza = false, burger = false, salad = false;
                   ),
                 ),
               ),
-            )
+            ),
+            SizedBox(height: 30,),
+            Container(
+              margin: EdgeInsets.only(right: 20),
+              child: Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image(image: AssetImage("images/Burger-43.png"),height: 120,width: 120,fit: BoxFit.cover,),
+                      SizedBox(height: 20,),
+
+                      Column(
+                        children: [
+
+                          Container(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: Text("Royal Cheese Burger")),
+                          SizedBox(height: 5,),
+                          Container(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: Text("Barbeque Burger")),
+                          SizedBox(height: 5,),
+                          Container(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: Text("\$28",style: TextStyle(fontWeight: FontWeight.bold),)),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 30,),
+            Container(
+              margin: EdgeInsets.only(right: 20),
+              child: Material(
+                elevation: 5,
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image(image: AssetImage("images/Burger-43.png"),height: 120,width: 120,fit: BoxFit.cover,),
+                      SizedBox(height: 20,),
+
+                      Column(
+                        children: [
+
+                          Container(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: Text("Royal Cheese Burger")),
+                          SizedBox(height: 5,),
+                          Container(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: Text("Barbeque Burger")),
+                          SizedBox(height: 5,),
+                          Container(
+                              width: MediaQuery.of(context).size.width/2,
+                              child: Text("\$28",style: TextStyle(fontWeight: FontWeight.bold),)),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+
 
           ],
         ),
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        height: 65,
-        backgroundColor: Colors.deepPurple,
-        color: Colors.deepPurple.shade200,
-        animationDuration: Duration(milliseconds: 500),
-        onTap:(int index){
-          setState(() {
-            currentTabIndex=index;
-          });
-        },
-        items: [
-          Icon(Icons.home_outlined,color: Colors.white,),
-          Icon(Icons.shopping_bag_outlined,color: Colors.white,),
-          Icon(Icons.payment_outlined,color: Colors.white,),
-          Icon(Icons.person,color: Colors.white,),
 
-        ],
-      ),
 
     );
   }

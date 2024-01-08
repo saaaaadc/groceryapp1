@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp1/on_board_screen.dart';
 import 'package:groceryapp1/register_screen.dart';
+import 'package:groceryapp1/scafffold_modify.dart';
 import 'package:groceryapp1/welcome_screen.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,10 +12,8 @@ void main() async{
         messagingSenderId: "722592910536",
         projectId:"groceryapp-1-5b7ee")
   );
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: MyApp(),
-  ));
+  runApp( MyApp(),
+  );
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.cyan),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: OnBoardScreen(),
     );
   }
 }
