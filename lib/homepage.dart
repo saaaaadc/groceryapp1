@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:groceryapp1/details.dart';
 
 class home extends StatefulWidget {
   home({super.key});
@@ -171,7 +172,7 @@ class _homeState extends State<home> {
               ),
               SizedBox(height: 30,),
               Container(
-                margin: EdgeInsets.only(right: 20),
+                margin: EdgeInsets.only(right: 20,bottom: 20),
                 child: Material(
                   elevation: 5,
                   borderRadius: BorderRadius.circular(20),

@@ -7,7 +7,6 @@ class Details extends StatefulWidget {
   @override
   State<Details> createState() => _DetailsState();
 }
-
 class _DetailsState extends State<Details> {
   int a=1;
   @override

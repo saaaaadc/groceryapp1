@@ -17,13 +17,13 @@ class _bottomnavbarState extends State<bottomnavbar> {
   late Widget currentPage;
   late home homepage;
   late Wallet wallets;
-  late Ordercart order;
+  late Order order;
   late Profile profile;
   @override
   void initState() {
     homepage=home();
     wallets=Wallet();
-    order=Ordercart();
+    order=Order();
     profile=Profile();
     pages=[homepage,order,wallets,profile];
     super.initState();
