@@ -123,7 +123,7 @@ Future signInUser(BuildContext context) async {
           email: signemail.text.trim(),
           password: signpassword.text.trim());
       print('ok');
-      Navigator.push(context, MaterialPageRoute(builder: (context) => OnBoardScreen(),));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Onboard(),));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: Duration(seconds: 3),
           backgroundColor: Colors.brown[900],

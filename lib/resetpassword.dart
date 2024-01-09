@@ -49,7 +49,7 @@ class againpass extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>OnBoardScreen(),
+              builder: (context) =>Onboard(),
             ));
       } on FirebaseAuthException catch (f) {
         print(f);

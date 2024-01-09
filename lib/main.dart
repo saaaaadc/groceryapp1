@@ -20,7 +20,7 @@ void main() async{
   );
 }
 class MyApp extends StatelessWidget {
-  bool condition = true;
+
    MyApp({super.key});
 
   @override
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.cyan),
       debugShowCheckedModeBanner: false,
-        home:condition? WelcomeScreen():login(),
+        home:Onboard(),
     );
   }
 }
