@@ -44,7 +44,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => login(),));
                       },
-                      child: Text("LOGIN")),
+                      child: Text("Next")),
                 )
               ],
             ),

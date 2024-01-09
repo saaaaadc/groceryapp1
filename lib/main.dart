@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:groceryapp1/on_board_screen.dart';
-import 'package:groceryapp1/register_screen.dart';
 import 'package:groceryapp1/scafffold_modify.dart';
 import 'package:groceryapp1/welcome_screen.dart';
 import 'package:groceryapp1/widgets/app_constants.dart';
@@ -26,40 +25,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.cyan),
       debugShowCheckedModeBanner: false,
-      home: OnBoardScreen(),
+      home:WelcomeScreen(),
     );
   }
 }
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => WelcomeScreen()
-      ));
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Image(image: AssetImage("images/download.jpg"),
-        height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          fit: BoxFit.cover
-          ,)
-      ],
-    );
-  }
-}
