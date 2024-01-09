@@ -1,9 +1,9 @@
 import 'dart:js';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:groceryapp1/on_board_screen.dart';
 import 'package:groceryapp1/refaction.dart';
 import 'package:groceryapp1/signup.dart';
-import 'package:groceryapp1/welcome_screen.dart';
 class againpass extends StatelessWidget {
   TextEditingController emailidd = TextEditingController();
 
@@ -49,7 +49,7 @@ class againpass extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => WelcomeScreen(),
+              builder: (context) =>OnBoardScreen(),
             ));
       } on FirebaseAuthException catch (f) {
         print(f);

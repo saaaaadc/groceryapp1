@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:groceryapp1/login_page.dart';
+
+import 'constants.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({super.key});
-  static const kPageViewTextStyle = TextStyle(
-    fontSize: 20,fontWeight: FontWeight.w700
-  );
 
   @override
   State<OnBoardScreen> createState() => _OnBoardScreenState();
@@ -17,36 +17,26 @@ final _controller = PageController(
 
 int _currentPage = 0;
 
-List<Widget> _pages = [
+List<Widget> _pages=[
   Column(
     children: [
       Expanded(
-        child: Image(image: AssetImage("images/home-page-161.png")),
+        child: Image
+          (image: AssetImage("images/home-page-161.png")),
       ),
-      Text(
-        "Order Online from your Favourite Store",style: OnBoardScreen.kPageViewTextStyle,
-
-      )
-        ,
-
+      Text("Order Online from your Favourite Store",style:kPageViewTextStyle,textAlign: TextAlign.center,)
     ],
   ),
   Column(
     children: [
       Expanded(
-        child: Image(
-            image:
-            AssetImage("images/202.9-location-service-icon-iconbunny.jpg")),
+        child: Image
+          (image: AssetImage("images/202.9-location-service-icon-iconbunny.jpg")),
       ),
-      Text(
-        "Set your delivery location",
-        style: OnBoardScreen.kPageViewTextStyle,
-        textAlign: TextAlign.center,
-      ),
-      MaterialButton(onPressed: (){},
-      child: Text("Next"),)
+      Text("Set your delivery location",style:kPageViewTextStyle,textAlign: TextAlign.center,)
     ],
   ),
+
 ];
 
 class _OnBoardScreenState extends State<OnBoardScreen> {
@@ -61,8 +51,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
             onPageChanged: (index) {
               setState(() {
                 _currentPage = index;
-              });
-              ;
+              });;
             },
           ),
         ),
@@ -73,14 +62,14 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
           decorator: DotsDecorator(
               size: const Size.square(9.0),
               activeSize: const Size(18.0, 9.0),
-              activeShape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0)),
-              activeColor: Colors.green[600]),
+              activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+              activeColor: Colors.green[600]
+          ),
         ),
-        SizedBox(
-          height: 20,
-        )
+        SizedBox(height: 20,)
       ],
     );
+
+
   }
 }

@@ -1,15 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:groceryapp1/homepage.dart';
+import 'package:groceryapp1/bottomnavbar.dart';
 import 'package:groceryapp1/login_page.dart';
-import 'package:groceryapp1/main.dart';
 import 'package:groceryapp1/on_board_screen.dart';
-import 'package:groceryapp1/refaction.dart';
-import 'package:groceryapp1/resetpassword.dart';
-import 'package:groceryapp1/signup.dart';
-
-
 class WelcomeScreen extends StatefulWidget {
 
 
@@ -28,7 +20,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Column(
               children: [
                 Expanded(
-                  child: OnBoardScreen(),
+                  child:OnBoardScreen(),
                 ),
                 Text("Ready to order from your nearest shop?"),
                 SizedBox(height: 20),
@@ -42,7 +34,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: MaterialButton(
                       color: Colors.deepOrangeAccent,
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => login(),));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => bottomnavbar(),));
                       },
                       child: Text("Next")),
                 )
@@ -54,5 +46,3 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 }
-
-
