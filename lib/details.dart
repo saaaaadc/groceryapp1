@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:groceryapp1/service/database.dart';
+import 'package:groceryapp1/service/sharedpreferences.dart';
 class Details extends StatefulWidget {
   String image, name, detail, price;
   Details(
@@ -175,7 +177,7 @@ class _DetailsState extends State<Details> {
                         "Total": total.toString(),
                         "Image": widget.image
                       };
-                      await DatabaseMethods().addFoodToCart(addFoodtoCart, id!);
+                      await DatabaseMethods().addFoodtoCart(addFoodtoCart, id!);
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           backgroundColor: Colors.orangeAccent,
                           content: Text(

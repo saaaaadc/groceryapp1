@@ -1,4 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:groceryapp1/service/database.dart';
+import 'package:groceryapp1/service/sharedpreferences.dart';
+import 'package:groceryapp1/widgets/app_constants.dart';
+import 'package:http/http.dart' as http;
 
 class Wallet extends StatefulWidget {
   const Wallet({super.key});
@@ -224,7 +230,7 @@ class _WalletState extends State<Wallet> {
       await Stripe.instance.presentPaymentSheet().then((value) async {
         add = int.parse(wallet!) + int.parse(amount);
         await SharedPreferenceHelper().saveUserWallet(add.toString());
-        await DatabaseMethods().UpdateUserwallet(id!, add.toString());
+        await DatabaseMethods().UpdateUserWallet(id!,add.toString());
         // ignore: use_build_context_synchronously
         showDialog(
             context: context,

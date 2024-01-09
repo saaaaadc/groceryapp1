@@ -2,7 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:groceryapp1/refaction.dart';
+import 'package:groceryapp1/service/database.dart';
+import 'package:groceryapp1/service/sharedpreferences.dart';
 import 'package:groceryapp1/welcome_screen.dart';
+import 'package:random_string/random_string.dart';
 
 TextEditingController signname = TextEditingController();
 TextEditingController signemail = TextEditingController();
@@ -127,6 +130,22 @@ Future signInUser(BuildContext context) async {
           behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.all(10),
           content: Text('Account Created Successfully')));
+      String Id= randomAlphaNumeric(20);
+      Map<String, dynamic> addUserInfo={
+        "Name":signname.text,
+        "Email":signemail.text,
+        "Wallet":"0",
+        "Id":Id,
+      };
+      await DatabaseMethods().addUserDetail(addUserInfo, Id);
+      await SharedPreferenceHelper().saveUserName(signname.text);
+      await SharedPreferenceHelper().saveUserEmail(signemail.text);
+      await SharedPreferenceHelper().saveUserWallet('0');
+      await SharedPreferenceHelper().saveUserId(Id);
+
+
+
+
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: Duration(seconds: 3),

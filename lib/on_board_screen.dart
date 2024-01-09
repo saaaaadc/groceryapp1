@@ -42,7 +42,9 @@ List<Widget> _pages = [
         "Set your delivery location",
         style: OnBoardScreen.kPageViewTextStyle,
         textAlign: TextAlign.center,
-      )
+      ),
+      MaterialButton(onPressed: (){},
+      child: Text("Next"),)
     ],
   ),
 ];

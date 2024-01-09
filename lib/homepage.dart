@@ -60,7 +60,7 @@ bool icecream = false,pizza = false, burger = false, salad = false;
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: Navigator.push(context, MaterialPageRoute(builder: (context) => Details(),)),
+                    onTap: Navigator.push(context, MaterialPageRoute(builder: (context) => Details(detail: detail, image: image, name: name, price: price),)),
                     child: Container(
                       margin: EdgeInsets.all(4),
                       child: Material(
