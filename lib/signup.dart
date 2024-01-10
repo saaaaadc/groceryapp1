@@ -15,7 +15,6 @@ TextEditingController signconpassword = TextEditingController();
 
 
 class signup extends StatefulWidget {
-
   signup({super.key});
 
   @override
