@@ -54,6 +54,7 @@ class _homeState extends State<home> {
                 child: Row(
                   children: [
                     Container(
+
                       margin: EdgeInsets.all(4),
                       child: Material(
                         elevation: 5,
@@ -63,6 +64,7 @@ class _homeState extends State<home> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+
                               Image(image: AssetImage('images/pngtree-ice-cream-dessert-realistic-white-background-transparent-png-image_9047252.png'),height: 150,width: 150,fit: BoxFit.cover ),
                               Text("Ice Cream",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)),
                               SizedBox(height: 5,),

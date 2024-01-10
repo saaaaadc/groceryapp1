@@ -8,12 +8,12 @@ class Details extends StatefulWidget {
   State<Details> createState() => _DetailsState();
 }
 class _DetailsState extends State<Details> {
-  int a=1;
+  int a = 1, total = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
+        margin: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -50,7 +50,7 @@ class _DetailsState extends State<Details> {
                 Spacer(),
                 GestureDetector(
                   onTap: (){
-                    if(a>1){
+                    if(a > 1){
                       --a;
                     }
                     setState(() {

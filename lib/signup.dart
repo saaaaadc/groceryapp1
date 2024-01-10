@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:groceryapp1/bottomnavbar.dart';
 import 'package:groceryapp1/on_board_screen.dart';
 import 'package:groceryapp1/refaction.dart';
 import 'package:groceryapp1/service/database.dart';
@@ -13,10 +14,15 @@ TextEditingController signpassword = TextEditingController();
 TextEditingController signconpassword = TextEditingController();
 
 
-class signup extends StatelessWidget {
+class signup extends StatefulWidget {
 
   signup({super.key});
 
+  @override
+  State<signup> createState() => _signupState();
+}
+
+class _signupState extends State<signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +58,12 @@ class signup extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: insert(
+                      validators: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please Enter Name';
+                        }
+                        return null;
+                      },
                       store: signname,
                         logo: Icon(Icons.perm_contact_cal_sharp),
                         clue: 'First Name'),
@@ -59,6 +71,12 @@ class signup extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: insert(
+                      validators: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please Enter Email';
+                        }
+                        return null;
+                      },
                         store: signemail,
                         logo: Icon(Icons.email_outlined),
                         clue: 'Email'),
@@ -66,6 +84,12 @@ class signup extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: insert(
+                      validators: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please Enter Password';
+                        }
+                        return null;
+                      },
                       store: signpassword,
                       logo: Icon(Icons.password_outlined),
                       clue: 'Password',
@@ -75,6 +99,12 @@ class signup extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: insert(
+                      validators: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please Re enter Password';
+                        }
+                        return null;
+                      },
                       store: signconpassword,
                       logo: Icon(Icons.password_outlined),
                       clue: ' Re enter Password',
@@ -123,7 +153,7 @@ Future signInUser(BuildContext context) async {
           email: signemail.text.trim(),
           password: signpassword.text.trim());
       print('ok');
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Onboard(),));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => bottomnavbar(),));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: Duration(seconds: 3),
           backgroundColor: Colors.brown[900],
@@ -142,10 +172,6 @@ Future signInUser(BuildContext context) async {
       await SharedPreferenceHelper().saveUserEmail(signemail.text);
       await SharedPreferenceHelper().saveUserWallet('0');
       await SharedPreferenceHelper().saveUserId(Id);
-
-
-
-
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: Duration(seconds: 3),

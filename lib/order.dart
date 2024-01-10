@@ -9,10 +9,6 @@ class Order extends StatefulWidget {
 class _OrderState extends State<Order> {
   String? id, wallet;
   int total=0, amount2=0;
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

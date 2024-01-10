@@ -5,13 +5,15 @@ class insert extends StatelessWidget {
   final Widget? suffixIcon;
   final TextEditingController? store;
   final Color? fillColor;
+  final String? Function(String?)? validators;
 
-  insert({super.key, this.logo, this.clue, this.store, this.suffixIcon, this.fillColor});
+  insert({super.key, this.logo, this.clue, this.store, this.suffixIcon, this.fillColor, this.validators});
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
         controller: store,
+        validator:validators,
         decoration: InputDecoration(
           filled: true,
           fillColor: fillColor,

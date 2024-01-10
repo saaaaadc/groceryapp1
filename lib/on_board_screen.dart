@@ -50,6 +50,7 @@ class _OnboardState extends State<Onboard> {
           Expanded(
             child: PageView.builder(
                 controller: _controller,
+                itemCount: contents.length,
                 onPageChanged: (int index) {
                   setState(() {
                     currentIndex = index;
@@ -59,31 +60,33 @@ class _OnboardState extends State<Onboard> {
                   return Padding(
                     padding: EdgeInsets.only(
                         top: 40.0, left: 20.0, right: 20.0),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          "images/salad.jpg",
-                          height: 450,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
-                          fit: BoxFit.fill,
-                        ),
-                        SizedBox(
-                          height: 40.0,
-                        ),
-                        Text(
-                          "Select from our menu\n  --- Best Menu",
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            contents[i].image,
+                            height: 450,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width,
+                            fit: BoxFit.fill,
+                          ),
+                          SizedBox(
+                            height: 40.0,
+                          ),
+                          Text(
+                            contents[i].title,
 
-                        ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        Text(
-                            "Pick your food from our menu\n More than 35 times"
-                        )
-                      ],
+                          ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Text(
+                            contents[i].description,
+                          )
+                        ],
+                      ),
                     ),
                   );
                 }),

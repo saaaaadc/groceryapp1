@@ -8,9 +8,14 @@ import 'package:groceryapp1/signup.dart';
 
 TextEditingController newemail = TextEditingController();
 TextEditingController newpassword = TextEditingController();
-class login extends StatelessWidget {
+class login extends StatefulWidget {
   const login({super.key});
 
+  @override
+  State<login> createState() => _loginState();
+}
+
+class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
