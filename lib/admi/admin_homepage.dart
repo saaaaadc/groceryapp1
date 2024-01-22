@@ -10,6 +10,8 @@ class adminhomepage extends StatefulWidget {
 class _adminhomepageState extends State<adminhomepage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      body: Center(child: Text("hii",style: TextStyle(fontWeight: FontWeight.bold),)),
+    );
   }
 }

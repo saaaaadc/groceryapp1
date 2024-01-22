@@ -5,16 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:groceryapp1/admi/admin_homepage.dart';
 
 
-class adminlogin extends StatefulWidget {
-  const adminlogin({super.key});
+class AdminLogin extends StatefulWidget {
+  const AdminLogin({super.key});
 
   @override
-  State<adminlogin> createState() => _adminloginState();
+  State<AdminLogin> createState() => _AdminLoginState();
 }
-class _adminloginState extends State<adminlogin> {
+
+class _AdminLoginState extends State<AdminLogin> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-  TextEditingController username = TextEditingController();
-  TextEditingController userpassword = TextEditingController();
+  TextEditingController usernamecontroller = new TextEditingController();
+  TextEditingController userpasswordcontroller = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +42,7 @@ class _adminloginState extends State<adminlogin> {
             Container(
               margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 60.0),
               child: Form(
+                  key: _formkey,
                   child: Column(
                     children: [
                       Text(
@@ -77,6 +80,7 @@ class _adminloginState extends State<adminlogin> {
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Center(
                                   child: TextFormField(
+                                    controller: usernamecontroller,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
                                         return 'Please Enter Username';
@@ -105,6 +109,7 @@ class _adminloginState extends State<adminlogin> {
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Center(
                                   child: TextFormField(
+                                    controller: userpasswordcontroller,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
                                         return 'Please Enter Password';
@@ -122,19 +127,25 @@ class _adminloginState extends State<adminlogin> {
                               SizedBox(
                                 height: 40.0,
                               ),
-                              Container(
-                                padding: EdgeInsets.symmetric(vertical: 12.0),
-                                margin: EdgeInsets.symmetric(horizontal: 20.0),
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Center(
-                                  child: MaterialButton(
-                                   onPressed: (){
-                                    LoginAdmin();
-                                   },
-                                    child: Text("Login",style: TextStyle(color: Colors.white),),
+                              GestureDetector(
+                                onTap: (){
+                                  LoginAdmin();
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 12.0),
+                                  margin: EdgeInsets.symmetric(horizontal: 20.0),
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Center(
+                                    child: Text(
+                                      "LogIn",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
                               )
@@ -150,10 +161,11 @@ class _adminloginState extends State<adminlogin> {
       ),
     );
   }
+
   LoginAdmin() {
-    FirebaseFirestore.instance.collection("admin").get().then((snapshot) {
+    FirebaseFirestore.instance.collection("Admin").get().then((snapshot) {
       snapshot.docs.forEach((result) {
-        if (result.data()['id'] != username.text.trim()) {
+        if (result.data()['id'] != usernamecontroller.text.trim()) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               backgroundColor: Colors.orangeAccent,
               content: Text(
@@ -161,7 +173,7 @@ class _adminloginState extends State<adminlogin> {
                 style: TextStyle(fontSize: 18.0),
               )));
         } else if (result.data()['password'] !=
-            userpassword.text.trim()) {
+            userpasswordcontroller.text.trim()) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               backgroundColor: Colors.orangeAccent,
               content: Text(
