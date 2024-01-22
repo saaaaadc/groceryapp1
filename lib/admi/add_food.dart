@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp1/service/database.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddFood extends StatefulWidget {
   const AddFood({super.key});
@@ -15,13 +17,16 @@ class _AddFoodState extends State<AddFood> {
   TextEditingController namecontroller = new TextEditingController();
   TextEditingController pricecontroller = new TextEditingController();
   TextEditingController detailcontroller = new TextEditingController();
+  final ImagePicker _picker = ImagePicker();
+  File? selectedImage;
 
 
   Future getImage() async {
+    var image = await _picker.pickImage(source: ImageSource.gallery);
+    selectedImage=File(image!.path);
+    setState(() {
 
-
-
-    setState(() {});
+    });
   }
 
 
@@ -57,8 +62,8 @@ class _AddFoodState extends State<AddFood> {
               SizedBox(
                 height: 20.0,
               ),
-
-                  GestureDetector(
+              selectedImage == null
+                  ? GestureDetector(
                 onTap: () {
                   getImage();
                 },
@@ -81,8 +86,8 @@ class _AddFoodState extends State<AddFood> {
                     ),
                   ),
                 ),
-              ),
-                   Center(
+              )
+                  : Center(
                 child: Material(
                   elevation: 4.0,
                   borderRadius: BorderRadius.circular(20),
@@ -93,7 +98,13 @@ class _AddFoodState extends State<AddFood> {
                       border: Border.all(color: Colors.black, width: 1.5),
                       borderRadius: BorderRadius.circular(20),
                     ),
-
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.file(
+                        selectedImage!,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               ),

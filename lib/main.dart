@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:groceryapp1/admi/admin_homepage.dart';
 import 'package:groceryapp1/admi/admin_login.dart';
 import 'package:groceryapp1/bottomnavbar.dart';
 import 'package:groceryapp1/details.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.cyan),
       debugShowCheckedModeBanner: false,
-        home:AdminLogin(),
+        home:adminhomepage(),
     );
   }
 }
