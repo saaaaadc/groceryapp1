@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp1/service/database.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:random_string/random_string.dart';
 
 class AddFood extends StatefulWidget {
   const AddFood({super.key});
@@ -20,15 +22,42 @@ class _AddFoodState extends State<AddFood> {
   final ImagePicker _picker = ImagePicker();
   File? selectedImage;
 
-
   Future getImage() async {
     var image = await _picker.pickImage(source: ImageSource.gallery);
-    selectedImage=File(image!.path);
-    setState(() {
 
-    });
+    selectedImage = File(image!.path);
+    setState(() {});
   }
+  uploadItem() async {
+    if (selectedImage != null &&
+          namecontroller.text != "" &&
+          pricecontroller.text != "" &&
+          detailcontroller.text != "") {
+        String addId = randomAlphaNumeric(10);
 
+      Reference firebaseStorageRef =
+      FirebaseStorage.instance.ref().child("blogImages").child(addId);
+      final UploadTask task = firebaseStorageRef.putFile(selectedImage!);
+
+      var downloadUrl = await (await task).ref.getDownloadURL();
+
+      Map<String, dynamic> addItem = {
+        "Image": downloadUrl,
+        "Name": namecontroller.text,
+        "Price": pricecontroller.text,
+        "Detail": detailcontroller.text
+      };
+      await DatabaseMethods().addFoodItem(addItem, value!).then((value) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "Food Item has been added Successfully",
+              style: TextStyle(fontSize: 18.0),
+            )));
+      });
+
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -225,8 +254,8 @@ class _AddFoodState extends State<AddFood> {
                 height: 30.0,
               ),
               GestureDetector(
-                onTap: (){
-
+                onTap: ()async {
+                  await uploadItem();
                 },
                 child: Center(
                   child: Material(
