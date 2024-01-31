@@ -11,9 +11,11 @@ import 'package:groceryapp1/widgets/app_constants.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: FirebaseOptions(apiKey:"AIzaSyDpj2mj-gJmVJv2785chdyBfI6lZ8z9M6Q", appId: "1:722592910536:android:2e748b58da5faa69bb69f",
+    options: FirebaseOptions(apiKey:"AIzaSyDpj2mj-gJmVJv2785chdyBfI6lZ8z9M6Q",
+        appId: "1:722592910536:android:2e748b58da5faa69bb69f",
         messagingSenderId: "722592910536",
-        projectId:"groceryapp-1-5b7ee")
+        projectId:"groceryapp-1-5b7ee",
+      storageBucket: "gs://groceryapp-1-5b7ee.appspot.com",)
   );
   runApp( MyApp(),
   );

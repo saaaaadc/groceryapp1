@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp1/details.dart';
+import 'package:groceryapp1/service/database.dart';
 
 class home extends StatefulWidget {
   home({super.key});
@@ -12,10 +14,62 @@ class _homeState extends State<home> {
 
   bool icecream = false,pizza = false, burger = false, salad = false;
 
-  @override
+  Stream? foodItemStream;
+ontheload()async{
+  foodItemStream = await DatabaseMethods().getFoodItem("Salad");
+  setState(() {
+
+  });
+}
+@override
   void initState() {
+    ontheload();
     super.initState();
   }
+ Widget allItems(){
+  return StreamBuilder(stream: foodItemStream, builder: (context, AsyncSnapshot snapshot){
+    return snapshot.hasData?
+        ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: snapshot.data.docs.length,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index){
+              DocumentSnapshot ds = snapshot.data.docs[index];
+              return GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Details()));
+                },
+                child: Container(
+                  margin: EdgeInsets.all(4),
+                  child: Material(
+                    elevation: 5,
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      padding: EdgeInsets.all(14),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.network(
+                              ds["Image"],
+                              height: 150,
+                              width: 150,
+                              fit: BoxFit.cover
+                          ),
+                          Text(ds["Name"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)),
+                          SizedBox(height: 5,),
+                          Text("\$"+ds["Price"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black))
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }):
+    CircularProgressIndicator();
+  });
+ }
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -46,62 +100,8 @@ class _homeState extends State<home> {
               Text('Discover and Get Great Food',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),),
               SizedBox(height: 20,),
               Container(
-                  margin: EdgeInsets.only(right: 20),
-                  child:showItem()),
-              SizedBox(height: 30,),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Container(
-
-                      margin: EdgeInsets.all(4),
-                      child: Material(
-                        elevation: 5,
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          padding: EdgeInsets.all(14),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-
-                              Image(image: AssetImage('images/pngtree-ice-cream-dessert-realistic-white-background-transparent-png-image_9047252.png'),height: 150,width: 150,fit: BoxFit.cover ),
-                              Text("Ice Cream",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)),
-                              SizedBox(height: 5,),
-                              Text("Fresh and Healthy"),
-                              SizedBox(height: 5,),
-                              Text("\$25",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black))
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Container(
-                      margin: EdgeInsets.all(5),
-                      child: Material(
-                        elevation: 6,
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          padding: EdgeInsets.all(14),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image(image: AssetImage('images/pngtree-ice-cream-dessert-realistic-white-background-transparent-png-image_9047252.png'),height: 150,width: 150,fit: BoxFit.cover ),
-                              Text("Ice Cream",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)),
-                              SizedBox(height: 5,),
-                              Text("Fresh and Healthy"),
-                              SizedBox(height: 5,),
-                              Text("\$25",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black))
-
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+                height: 270,
+                  child: allItems()),
               SizedBox(height: 30,),
               Container(
                 margin: EdgeInsets.only(right: 20),

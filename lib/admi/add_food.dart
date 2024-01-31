@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp1/service/database.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,20 +23,25 @@ class _AddFoodState extends State<AddFood> {
 
   Future getImage() async {
     var image = await _picker.pickImage(source: ImageSource.gallery);
-
-    selectedImage = File(image!.path);
+    if (image == null) {
+      // User canceled image selection.
+      return;
+    }
+    selectedImage = File(image.path);
     setState(() {});
   }
   uploadItem() async {
     if (selectedImage != null &&
-          namecontroller.text != "" &&
-          pricecontroller.text != "" &&
-          detailcontroller.text != "") {
-        String addId = randomAlphaNumeric(10);
+        namecontroller.text != "" &&
+        pricecontroller.text != "" &&
+        detailcontroller.text != "") {
+      String addId = randomAlphaNumeric(10);
 
       Reference firebaseStorageRef =
       FirebaseStorage.instance.ref().child("blogImages").child(addId);
       final UploadTask task = firebaseStorageRef.putFile(selectedImage!);
+
+
 
       var downloadUrl = await (await task).ref.getDownloadURL();
 
@@ -55,7 +59,6 @@ class _AddFoodState extends State<AddFood> {
               style: TextStyle(fontSize: 18.0),
             )));
       });
-
     }
   }
 
