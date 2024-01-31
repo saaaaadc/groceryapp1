@@ -26,6 +26,66 @@ ontheload()async{
     ontheload();
     super.initState();
   }
+  Widget allItemsvertically(){
+    return StreamBuilder(stream: foodItemStream, builder: (context, AsyncSnapshot snapshot){
+      return snapshot.hasData?
+      ListView.builder(
+          padding: EdgeInsets.zero,
+          itemCount: snapshot.data.docs.length,
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index){
+            DocumentSnapshot ds = snapshot.data.docs[index];
+            return GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Details(image: ds["Image"], name: ds["Name"], detail: ds["Detail"], price: ds["Price"])));
+              },
+              child:Container(
+                margin: EdgeInsets.only(right: 20,bottom: 20),
+                child: Material(
+                  elevation: 5,
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.network(
+                            ds["Image"],
+                            height: 120,
+                            width: 120,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(height: 20,),
+                        Column(
+                          children: [
+                            Container(
+                                width: MediaQuery.of(context).size.width/2,
+                                child: Text(ds["Name"])
+                            ),
+                            SizedBox(height: 5,),
+                            Container(
+                                width: MediaQuery.of(context).size.width/2,
+                                child: Text("Barbeque Burger")),
+                            SizedBox(height: 5,),
+                            Container(
+                                width: MediaQuery.of(context).size.width/2,
+                                child: Text("\$"+ds["Price"],style: TextStyle(fontWeight: FontWeight.bold),)),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          }):
+      CircularProgressIndicator();
+    });
+  }
  Widget allItems(){
   return StreamBuilder(stream: foodItemStream, builder: (context, AsyncSnapshot snapshot){
     return snapshot.hasData?
@@ -38,7 +98,7 @@ ontheload()async{
               DocumentSnapshot ds = snapshot.data.docs[index];
               return GestureDetector(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Details()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Details(image: ds["Image"], name: ds["Name"], detail: ds["Detail"], price: ds["Price"])));
                 },
                 child: Container(
                   margin: EdgeInsets.all(4),
@@ -50,11 +110,14 @@ ontheload()async{
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.network(
-                              ds["Image"],
-                              height: 150,
-                              width: 150,
-                              fit: BoxFit.cover
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.network(
+                                ds["Image"],
+                                height: 150,
+                                width: 150,
+                                fit: BoxFit.cover
+                            ),
                           ),
                           Text(ds["Name"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)),
                           SizedBox(height: 5,),
@@ -99,123 +162,17 @@ ontheload()async{
               ),
               Text('Discover and Get Great Food',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),),
               SizedBox(height: 20,),
+              showItem(),
+              SizedBox(height: 20,),
               Container(
                 height: 270,
                   child: allItems()),
-              SizedBox(height: 30,),
-              Container(
-                margin: EdgeInsets.only(right: 20),
-                child: Material(
-                  elevation: 5,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image(image: AssetImage("images/Burger-43.png"),height: 120,width: 120,fit: BoxFit.cover,),
-                        SizedBox(height: 20,),
-
-                        Column(
-                          children: [
-
-                            Container(
-                                width: MediaQuery.of(context).size.width/2,
-                                child: Text("Royal Cheese Burger")),
-                            SizedBox(height: 5,),
-                            Container(
-                                width: MediaQuery.of(context).size.width/2,
-                                child: Text("Barbeque Burger")),
-                            SizedBox(height: 5,),
-                            Container(
-                                width: MediaQuery.of(context).size.width/2,
-                                child: Text("\$28",style: TextStyle(fontWeight: FontWeight.bold),)),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 30,),
-              Container(
-                margin: EdgeInsets.only(right: 20),
-                child: Material(
-                  elevation: 5,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image(image: AssetImage("images/Burger-43.png"),height: 120,width: 120,fit: BoxFit.cover,),
-                        SizedBox(height: 20,),
-
-                        Column(
-                          children: [
-
-                            Container(
-                                width: MediaQuery.of(context).size.width/2,
-                                child: Text("Royal Cheese Burger")),
-                            SizedBox(height: 5,),
-                            Container(
-                                width: MediaQuery.of(context).size.width/2,
-                                child: Text("Barbeque Burger")),
-                            SizedBox(height: 5,),
-                            Container(
-                                width: MediaQuery.of(context).size.width/2,
-                                child: Text("\$28",style: TextStyle(fontWeight: FontWeight.bold),)),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 30,),
-              Container(
-                margin: EdgeInsets.only(right: 20,bottom: 20),
-                child: Material(
-                  elevation: 5,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image(image: AssetImage("images/Burger-43.png"),height: 120,width: 120,fit: BoxFit.cover,),
-                        SizedBox(height: 20,),
-
-                        Column(
-                          children: [
-
-                            Container(
-                                width: MediaQuery.of(context).size.width/2,
-                                child: Text("Royal Cheese Burger")),
-                            SizedBox(height: 5,),
-                            Container(
-                                width: MediaQuery.of(context).size.width/2,
-                                child: Text("Barbeque Burger")),
-                            SizedBox(height: 5,),
-                            Container(
-                                width: MediaQuery.of(context).size.width/2,
-                                child: Text("\$28",style: TextStyle(fontWeight: FontWeight.bold),)),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-
-
-
+              SizedBox(height: 20,),
+              allItemsvertically()
             ],
           ),
         ),
       ),
-
-
     );
   }
   Widget showItem(){
@@ -223,11 +180,12 @@ ontheload()async{
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(
-          onTap: (){
+          onTap: ()async{
             icecream=true;
             pizza=false;
             salad=false;
             burger=false;
+            foodItemStream = await DatabaseMethods().getFoodItem("Ice-cream");
             setState(() {
             });
           },
@@ -245,11 +203,12 @@ ontheload()async{
           ),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: ()async{
             icecream=false;
             pizza=true;
             salad=false;
             burger=false;
+            foodItemStream = await DatabaseMethods().getFoodItem("Pizza");
             setState(() {
             });
           },
@@ -267,11 +226,12 @@ ontheload()async{
           ),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: ()async{
             icecream=false;
             pizza=false;
             salad=true;
             burger=false;
+            foodItemStream = await DatabaseMethods().getFoodItem("Salad");
             setState(() {
             });
           },
@@ -289,11 +249,12 @@ ontheload()async{
           ),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: ()async{
             icecream=false;
             pizza=false;
             salad=false;
             burger=true;
+            foodItemStream = await DatabaseMethods().getFoodItem("Burger");
             setState(() {
             });
           },
