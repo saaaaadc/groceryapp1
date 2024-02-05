@@ -4,6 +4,7 @@ import 'package:groceryapp1/homepage.dart';
 import 'package:groceryapp1/order.dart';
 import 'package:groceryapp1/profile.dart';
 import 'package:groceryapp1/wallet.dart';
+import 'package:groceryapp1/widgets/wishlist.dart';
 class bottomnavbar extends StatefulWidget {
   const bottomnavbar({super.key});
 
@@ -16,16 +17,16 @@ class _bottomnavbarState extends State<bottomnavbar> {
   late List<Widget>pages;
   late Widget currentPage;
   late home homepage;
-  late Wallet wallets;
+  late Wishlist wishlist;
   late Order order;
   late Profile profile;
   @override
   void initState() {
     homepage=home();
-    wallets=Wallet();
+    wishlist=Wishlist();
     order=Order();
     profile=Profile();
-    pages=[homepage,order,wallets,profile];
+    pages=[homepage,order,wishlist,profile];
     super.initState();
   }
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _bottomnavbarState extends State<bottomnavbar> {
         items: [
           Icon(Icons.home_outlined,color: Colors.white,),
           Icon(Icons.shopping_bag_outlined,color: Colors.white,),
-          Icon(Icons.payment_outlined,color: Colors.white,),
+          Icon(Icons.favorite,color: Colors.white,),
           Icon(Icons.person,color: Colors.white,),
 
         ],

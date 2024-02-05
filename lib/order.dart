@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp1/service/database.dart';
 import 'package:groceryapp1/service/sharedpreferences.dart';
+import 'package:groceryapp1/wallet.dart';
 
 class Order extends StatefulWidget {
   const Order({super.key});
@@ -167,20 +168,25 @@ class _OrderState extends State<Order> {
                 await DatabaseMethods().UpdateUserWallet(id!, amount.toString());
                 await SharedPreferenceHelper().saveUserWallet(amount.toString());
               },
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: Colors.black, borderRadius: BorderRadius.circular(10)),
-                margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
-                child: Center(
-                    child: Text(
-                      "CheckOut",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold),
-                    )),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Wallet(),));
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      color: Colors.black, borderRadius: BorderRadius.circular(10)),
+                  margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+                  child: Center(
+                      child: Text(
+                        "CheckOut",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold),
+                      )),
+                ),
               ),
             )
           ],

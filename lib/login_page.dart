@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:groceryapp1/bottomnavbar.dart';
 
 import 'package:groceryapp1/homepage.dart';
 import 'package:groceryapp1/refaction.dart';
@@ -84,7 +85,7 @@ Future<void> signInUser(BuildContext context) async {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => home(),
+          builder: (context) => bottomnavbar(),
         ));
   } on FirebaseAuthException catch (e) {
     final errorMessage = 'Email and password do not match';
