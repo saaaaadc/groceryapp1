@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:groceryapp1/bottomnavbar.dart';
+import 'package:groceryapp1/login_page.dart';
 import 'package:groceryapp1/on_board_screen.dart';
 import 'package:groceryapp1/refaction.dart';
 import 'package:groceryapp1/service/database.dart';
@@ -152,7 +153,7 @@ Future signInUser(BuildContext context) async {
           email: signemail.text.trim(),
           password: signpassword.text.trim());
       print('ok');
-      Navigator.push(context, MaterialPageRoute(builder: (context) => bottomnavbar(),));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => login(),));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: Duration(seconds: 3),
           backgroundColor: Colors.brown[900],

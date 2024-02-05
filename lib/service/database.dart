@@ -26,5 +26,7 @@ class DatabaseMethods {
         .doc(id).collection("Cart")
         .add(userInfoMap);
   }
-
+  Future<Stream<QuerySnapshot>> getFoodCart(String id)async{
+    return await FirebaseFirestore.instance.collection("users").doc(id).collection("Cart").snapshots();
+  }
 }

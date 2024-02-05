@@ -22,7 +22,7 @@ class _loginState extends State<login> {
       body: Column(
         children: [
           Padding(
-            padding:  EdgeInsets.only(top: 200,right: 60,left: 60),
+            padding:  EdgeInsets.only(top: 150,right: 60,left: 60),
             child: Text("Welcome Back",style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold,color: Colors.green[900]),),
           ),
           SizedBox(height: 7.5,),
@@ -60,9 +60,6 @@ class _loginState extends State<login> {
             ),
 
           ),
-          ElevatedButton(onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => home(),));
-            }, child:Text("Skip")),
           SizedBox(height: 100,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
