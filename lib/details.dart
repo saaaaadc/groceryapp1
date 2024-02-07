@@ -64,7 +64,7 @@ class _DetailsState extends State<Details> {
                       "Total":total.toString(),
                       "Image":widget.image,
                     };
-                    await DatabaseMethods().addFoodtoCart(addFoodtoWishlist, id);
+                    await DatabaseMethods().addFoodtoWishlist(addFoodtoWishlist, id);
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         backgroundColor: Colors.orangeAccent,
                         content: Text(
@@ -72,13 +72,7 @@ class _DetailsState extends State<Details> {
                           style: TextStyle(fontSize: 18.0),
                         )));
                   },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2,
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Icon(Icons.favorite_border_outlined)                  ),
+                  child:Icon(Icons.favorite),
                 ),
               ],
             ),

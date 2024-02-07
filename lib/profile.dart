@@ -253,7 +253,7 @@ class _ProfileState extends State<Profile> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Terms and Conditions",
+                              "Address",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16.0,

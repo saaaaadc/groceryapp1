@@ -7,7 +7,8 @@ import 'package:groceryapp1/service/sharedpreferences.dart';
 import 'package:groceryapp1/wallet.dart';
 
 class Wishlist extends StatefulWidget {
-  const Wishlist({super.key});
+
+   Wishlist({super.key});
 
   @override
   State<Wishlist> createState() => _WishlistState();
@@ -15,7 +16,8 @@ class Wishlist extends StatefulWidget {
 
 class _WishlistState extends State<Wishlist> {
   String? id, wallet;
-  int total=0, amount2=0;
+  int a = 1, total = 0;
+  int amount2=0;
 
   void startTimer(){
     Timer(Duration(seconds: 3), () {
@@ -108,7 +110,8 @@ class _WishlistState extends State<Wishlist> {
 
                               )
                             ],
-                          )
+                          ),
+
                         ],
                       ),
                     ),

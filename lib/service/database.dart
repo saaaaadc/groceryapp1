@@ -38,4 +38,16 @@ class DatabaseMethods {
   Future<Stream<QuerySnapshot>> getFoodCart(String id)async{
     return await FirebaseFirestore.instance.collection("users").doc(id).collection("Cart").snapshots();
   }
+  Future<void> removeFoodFromWishlist(String? wishlistItemId, String? userId) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userId)
+          .collection("Wishlist")
+          .doc(wishlistItemId)
+          .delete();
+    } catch (e) {
+      print('Error removing from wishlist: $e');
+    }
+  }
 }
