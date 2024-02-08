@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:groceryapp1/service/auth.dart';
 import 'package:groceryapp1/service/database.dart';
 import 'package:groceryapp1/service/sharedpreferences.dart';
+import 'package:groceryapp1/widgets/address.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:random_string/random_string.dart';
 class Profile extends StatefulWidget {
@@ -14,7 +15,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  String? profile, name, email;
+  String? profile, name, email, address;
   final ImagePicker _picker = ImagePicker();
   File? selectedImage;
 
@@ -46,6 +47,7 @@ class _ProfileState extends State<Profile> {
     profile= await SharedPreferenceHelper().getUserProfile();
     name= await SharedPreferenceHelper().getUserName();
     email= await SharedPreferenceHelper().getUserEmail();
+    address= await SharedPreferenceHelper().getUserAddress();
     setState(() {
 
     });
@@ -227,42 +229,54 @@ class _ProfileState extends State<Profile> {
               SizedBox(
                 height: 20.0,
               ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Material(
-                  borderRadius: BorderRadius.circular(10),
-                  elevation: 3.0,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 15.0,
-                      horizontal: 10.0,
-                    ),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.description,
-                          color: Colors.black,
-                        ),
-                        SizedBox(
-                          width: 20.0,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Address",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w600),
-                            ),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Address(),));
+                },
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Material(
+                    borderRadius: BorderRadius.circular(10),
+                    elevation: 3.0,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 15.0,
+                        horizontal: 10.0,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.description,
+                            color: Colors.black,
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Address",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                address!,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w600),
+                              )
 
-                          ],
-                        )
-                      ],
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
