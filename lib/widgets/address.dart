@@ -15,6 +15,7 @@ class _AddressState extends State<Address> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green[900],
         title: Text("My Addresses"),
       ),
       body: Column(
@@ -27,10 +28,12 @@ class _AddressState extends State<Address> {
               padding: EdgeInsets.all(16.0),
               height: 80,
               width: MediaQuery.of(context).size.width,
-              color: Colors.black, // Set the background color to black
-              child: Text(
-                "Add Address",
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
+              color: Colors.black54, // Set the background color to black
+              child: Center(
+                child: Text(
+                  "Add Address",
+                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
               ),
             ),
           ),
@@ -60,14 +63,18 @@ class _AddressState extends State<Address> {
     sahis.text=data;
     showDialog(context: context, builder:(Context)=>AlertDialog(
         actions: [
-          TextButton(onPressed: (){
+          MaterialButton(onPressed: (){
             setState(() {
               datas[index]=update(index, saads.text, sahis.text);
               Navigator.pop(context);
 
             });
-          }, child: Text("Add")),
-          TextButton(onPressed: (){Navigator.of(context).pop();}, child:Text('Close'),),
+          },
+              color: Colors.green[900],
+              child: Text("Add")),
+          MaterialButton(onPressed: (){Navigator.of(context).pop();},
+            color: Colors.green[900],
+            child:Text('Close'),),
 
         ],
         title: Text('Add Address'),
@@ -79,12 +86,12 @@ class _AddressState extends State<Address> {
                 controller:saads,
                 decoration:InputDecoration(
                     enabledBorder:OutlineInputBorder(
-                      borderRadius:BorderRadius.circular(30),
-                      borderSide:BorderSide(color:Colors.blue),
+                      borderRadius:BorderRadius.circular(10),
+                      borderSide:BorderSide(color:Colors.black),
                     ),
                     focusedBorder:OutlineInputBorder(
-                      borderRadius:BorderRadius.circular(30),
-                      borderSide:BorderSide(color:Colors.blue),
+                      borderRadius:BorderRadius.circular(10),
+                      borderSide:BorderSide(color:Colors.black),
 
                     )
                 ),
@@ -96,12 +103,12 @@ class _AddressState extends State<Address> {
                 controller: sahis,
                 decoration:InputDecoration(
                   enabledBorder:OutlineInputBorder(
-                    borderRadius:BorderRadius.circular(30),
-                    borderSide:BorderSide(color:Colors.red),
+                    borderRadius:BorderRadius.circular(10),
+                    borderSide:BorderSide(color:Colors.black),
                   ),
                   focusedBorder:OutlineInputBorder(
-                    borderRadius:BorderRadius.circular(30),
-                    borderSide:BorderSide(color:Colors.red),
+                    borderRadius:BorderRadius.circular(10),
+                    borderSide:BorderSide(color:Colors.black),
                   ),
                 ),
               ),
@@ -116,30 +123,39 @@ class _AddressState extends State<Address> {
   update(indexs,namess,datass){
     return  Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        height: 100,
-        color: Colors.blue,
-        width: MediaQuery.of(context).size.width,
-        child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,
-          children: [
-            Text(namess,style: TextStyle(fontSize:15,fontWeight:FontWeight.bold),),
-            Text(datass,style:TextStyle(fontSize:15,fontWeight: FontWeight.bold)),
-            Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,
+      child: Column(
+        children: [
+          Container(
+            height: 100,
+            color: Colors.white54,
+            width: MediaQuery.of(context).size.width,
+            child: Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(onPressed: (){
-                  delete(index);
-                },
-                    icon:Icon(Icons.delete)),
-                IconButton(onPressed: (){
-                  edit(namess,datass);
-                }, icon:Icon(Icons.edit)),
-
+                Text(namess,style: TextStyle(fontSize:15,fontWeight:FontWeight.bold),),
+                Text(datass,style:TextStyle(fontSize:15,fontWeight: FontWeight.bold)),
               ],
             ),
-          ],
-        ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MaterialButton(onPressed: (){
+                edit(namess,datass);
+              },
+                color: Colors.green[900],
+                child: Text("Edit"),),
+              MaterialButton(onPressed: (){
+                delete(index);
+              },
+                color: Colors.green[900],
+                child: Text("Remove"),)
+            ],
+          )
+        ],
       ),
+
     );
+
   }
 //first alert
   void alert(BuildContext context){
@@ -147,13 +163,17 @@ class _AddressState extends State<Address> {
     TextEditingController sahi =TextEditingController();
     showDialog(context: context, builder:(Context)=>AlertDialog(
         actions: [
-          TextButton(onPressed: (){
+          MaterialButton(onPressed: (){
             setState(() {
               Navigator.pop(context);
               addcontainer(context, sahi.text, saad.text);
             });
-          }, child: Text("Add")),
-          TextButton(onPressed: (){Navigator.of(context).pop();}, child:Text('Close'),),
+          },
+              color: Colors.green[900],
+              child: Text("Add")),
+          MaterialButton(onPressed: (){Navigator.of(context).pop();},
+            color: Colors.green[900],
+            child:Text('Close'),),
         ],
         title: Text('Add Address'),
         content:Column(
@@ -163,13 +183,14 @@ class _AddressState extends State<Address> {
               child: TextField(
                 controller:saad,
                 decoration:InputDecoration(
+                    label: Text("Pincode"),
                     enabledBorder:OutlineInputBorder(
-                      borderRadius:BorderRadius.circular(30),
-                      borderSide:BorderSide(color:Colors.blue),
+                      borderRadius:BorderRadius.circular(10),
+                      borderSide:BorderSide(color:Colors.black),
                     ),
                     focusedBorder:OutlineInputBorder(
-                      borderRadius:BorderRadius.circular(30),
-                      borderSide:BorderSide(color:Colors.blue),
+                      borderRadius:BorderRadius.circular(10),
+                      borderSide:BorderSide(color:Colors.black),
                     )
                 ),
               ),
@@ -179,13 +200,14 @@ class _AddressState extends State<Address> {
               child: TextField(
                 controller: sahi,
                 decoration:InputDecoration(
+                  label: Text("Address"),
                   enabledBorder:OutlineInputBorder(
-                    borderRadius:BorderRadius.circular(30),
-                    borderSide:BorderSide(color:Colors.red),
+                    borderRadius:BorderRadius.circular(10),
+                    borderSide:BorderSide(color:Colors.black),
                   ),
                   focusedBorder:OutlineInputBorder(
-                    borderRadius:BorderRadius.circular(30),
-                    borderSide:BorderSide(color:Colors.red),
+                    borderRadius:BorderRadius.circular(10),
+                    borderSide:BorderSide(color:Colors.black),
                   ),
                 ),
               ),
@@ -201,28 +223,38 @@ class _AddressState extends State<Address> {
     datas.add(
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            height: 100,
-            color: Colors.blue,
-            width: MediaQuery.of(context).size.width,
-            child: Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,
-              children: [
-                Text(namess,style: TextStyle(fontSize:15,fontWeight:FontWeight.bold),),
-                Text(datass,style:TextStyle(fontSize:15,fontWeight: FontWeight.bold)),
-                Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,
+          child: Column(
+            children: [
+              Container(
+                height: 100,
+                color: Colors.white54,
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    IconButton(onPressed: (){
-                      delete(index);
-                    },
-                        icon:Icon(Icons.delete)),
-                    IconButton(onPressed: (){
-                      edit(namess,datass);
-                    }, icon:Icon(Icons.edit)),
+                    Text(namess,style: TextStyle(fontSize:15,fontWeight:FontWeight.bold),),
+                    Text(datass,style:TextStyle(fontSize:15,fontWeight: FontWeight.bold)),
+
 
                   ],
                 ),
-              ],
-            ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MaterialButton(onPressed: (){
+                    edit(namess,datass);
+                  },
+                    color: Colors.green[900],
+                    child: Text("Edit"),),
+                  MaterialButton(onPressed: (){
+                    delete(index);
+                  },
+                    color: Colors.green[900],
+                    child: Text("Remove"),)
+                ],
+              )
+            ],
           ),
         )
     );

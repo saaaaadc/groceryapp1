@@ -265,13 +265,7 @@ class _ProfileState extends State<Profile> {
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w600),
                               ),
-                              Text(
-                                address!,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w600),
-                              )
+
 
                             ],
                           )
