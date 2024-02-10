@@ -9,175 +9,287 @@ class Wallet extends StatefulWidget {
 }
 
 class _WalletState extends State<Wallet> {
-
+  int _type = 1;
+  int total=0;
+  void _handleRadio(Object? e) => setState(() {
+    _type = e as int;
+  });
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+  Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body:
-      Container(
-        margin: EdgeInsets.only(top: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Material(
-                elevation: 2.0,
-                child: Container(
-                    padding: EdgeInsets.only(bottom: 10.0),
-                    child: Center(
-                        child: Text(
-                          "Wallet",
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        foregroundColor: Colors.black,
+        leading: BackButton(),
+        title: Text("Payment Gateway"),
+      ),
+      body: SafeArea(
+          child: Padding(
+              padding: EdgeInsets.all(20),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Container(
 
-                        )))),
-            SizedBox(
-              height: 30.0,
-            ),
-            Container(
-              padding:
-              EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
-              decoration: BoxDecoration(color: Color(0xFFF2F2F2)),
-              child: Row(
-                children: [
-                  Image.asset(
-                    "images/Burger-43.png",
-                    height: 60,
-                    width: 60,
-                    fit: BoxFit.cover,
-                  ),
-                  SizedBox(
-                    width: 40.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Your Wallet",
+                          height: 55,
+                          width: size.width,
+                          decoration: BoxDecoration(
+                            border: _type == 1?
+                                Border.all(width: 1 ,color: Colors.redAccent) : Border.all(
+                              width: 0.3,color: Colors.grey
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.transparent,
+                          ),
+                          child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Radio(value: 1, groupValue: _type, onChanged: _handleRadio,activeColor: Colors.redAccent),
+                                    Text("Amazon Pay",
+                                      style: _type == 1 ? TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black
+                                      )
+                                          : TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.grey
+                                      )
+                                    ),
+                                  ],
+                                ),
+                                Image.asset(
+                                  "images/Amazon_Pay-Logo-2412x652-1.png",
+                                  width: 110,
+                                )
+                              ],
+                            ),
+                          ),
 
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      Text(
-                        "\$",
+                          ),
+                        ),
+                        SizedBox(height: 15,),
+                        Container(
+                          height: 55,
+                          width: size.width,
+                          decoration: BoxDecoration(
+                            border: _type == 2?
+                            Border.all(width: 1 ,color: Colors.redAccent) : Border.all(
+                                width: 0.3,color: Colors.grey
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.transparent,
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Radio(value: 2, groupValue: _type, onChanged: _handleRadio,activeColor: Colors.redAccent),
+                                      Text("Google Pay",
+                                          style: _type == 2 ? TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black
+                                          )
+                                              : TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey
+                                          )
+                                      ),
+                                    ],
+                                  ),
+                                  Image.asset(
+                                    "images/gpay.png",
+                                    width:70,
+                                  )
+                                ],
+                              ),
+                            ),
 
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Text(
-                "Add money",
+                          ),
+                        ),
+                        SizedBox(height: 15,),
+                        Container(
+                          height: 55,
+                          width: size.width,
+                          decoration: BoxDecoration(
+                            border: _type == 3?
+                            Border.all(width: 1 ,color: Colors.redAccent) : Border.all(
+                                width: 0.3,color: Colors.grey
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.transparent,
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Radio(value: 3, groupValue: _type, onChanged: _handleRadio,activeColor: Colors.redAccent),
+                                      Text("Credit Card",
+                                          style: _type == 3 ? TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black
+                                          )
+                                              : TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey
+                                          )
+                                      ),
+                                    ],
+                                  ),
+                                  Image.asset(
+                                    "images/visa-and-mastercard-logo-26.png",
+                                    width:110,
+                                  )
+                                ],
+                              ),
+                            ),
 
-              ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                GestureDetector(
-                  onTap: () {
+                          ),
+                        ),
+                        SizedBox(height: 15,),
+                        Container(
+                          height: 55,
+                          width: size.width,
+                          decoration: BoxDecoration(
+                            border: _type == 4?
+                            Border.all(width: 1 ,color: Colors.redAccent) : Border.all(
+                                width: 0.3,color: Colors.grey
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.transparent,
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Radio(value: 4, groupValue: _type, onChanged: _handleRadio,activeColor: Colors.redAccent),
+                                      Text("Paypal",
+                                          style: _type == 4 ? TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black
+                                          )
+                                              : TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.grey
+                                          )
+                                      ),
+                                    ],
+                                  ),
+                                  Image.asset(
+                                    "images/580b57fcd9996e24bc43c530.png",
+                                   width: 110,
+                                  )
+                                ],
+                              ),
+                            ),
 
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFFE9E2E2)),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Text(
-                      "\$" + "100",
+                          ),
+                        ),
+                        SizedBox(height: 80,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Sub-Total",style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.grey
+                            ),),
+                            Text( "\$300",style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey
+                            ),)
+                          ],
+                        ),
+                        SizedBox(height: 15,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Delivery Charge",style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey
+                            ),),
+                            Text( "\$15",style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey
+                            ),)
+                          ],
+                        ),
 
+                        Divider(),
+                        SizedBox(height: 10,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Total Payment",style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black
+                            ),),
+                            Text( "\$315",style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.redAccent
+                            ),)
+                          ],
+                        ),
+                        SizedBox(height: 50,),
+                        Container(
+                          height: 60,
+                          width: 400,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                            color: Colors.red
+
+                          ),
+                          child: Center(child: Text("Confirm Payment",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),)),
+
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
 
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFFE9E2E2)),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Text(
-                      "\$" + "500",
+          ),
+          ),
 
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
 
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFFE9E2E2)),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Text(
-                      "\$" + "1000",
-
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-
-                  },
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xFFE9E2E2)),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Text(
-                      "\$" + "2000",
-
-                    ),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 50.0,
-            ),
-            GestureDetector(
-              onTap: () {
-
-              },
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.0),
-                padding: EdgeInsets.symmetric(vertical: 12.0),
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                decoration: BoxDecoration(
-                    color: Color(0xFF008080),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Center(
-                  child: Text(
-                    "Add Money",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.0,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
       ),
     );
   }

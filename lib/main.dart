@@ -6,6 +6,7 @@ import 'package:groceryapp1/admi/admin_login.dart';
 import 'package:groceryapp1/bottomnavbar.dart';
 import 'package:groceryapp1/login_page.dart';
 import 'package:groceryapp1/on_board_screen.dart';
+import 'package:groceryapp1/wallet.dart';
 import 'package:groceryapp1/welcomepage.dart';
 import 'package:groceryapp1/widgets/app_constants.dart';
 void main() async{
