@@ -96,7 +96,7 @@ class _ProfileState extends State<Profile> {
                             onTap: (){
                               getImage();
                             },
-                              child:profile==null? Image.asset("images/zagory181000041.jpg",height: 120,
+                              child:profile==null? Image.asset("images/person.png",height: 120,
                                   width: 120,
                                   fit: BoxFit.cover) :Image.network(
                               profile!,

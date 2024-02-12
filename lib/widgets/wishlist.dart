@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:html';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +67,7 @@ int a = 1, total = 0;
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 DocumentSnapshot ds = snapshot.data.docs[index];
-
+                String itemId = ds.id;
                 total= total+ int.parse(ds["Total"]);
                 return Column(
                   children: [
@@ -125,9 +125,17 @@ int a = 1, total = 0;
                     ),
                     MaterialButton(
                       onPressed: () async {
+                        // Ensure Id is defined or retrieve it from somewhere
+                        String itemId = ds.id; // Assuming ds.id is the document ID of the item in the wishlist
 
-                        },
+                        // Call the removeFromWishlist method
+                        await DatabaseMethods().removeFromWishlist(id, itemId);
 
+                        // Add logic to refresh the UI as needed
+                        setState(() {
+                          // Update any state variables if necessary
+                        });
+                      },
                       color: Colors.black,
                       child: Text("Remove", style: TextStyle(color: Colors.white)),
                     )

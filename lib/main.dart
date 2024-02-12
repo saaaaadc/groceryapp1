@@ -22,15 +22,13 @@ void main() async{
   );
 }
 class MyApp extends StatelessWidget {
-
-   MyApp({super.key});
-
-  @override
+  MyApp({super.key});
+   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.cyan),
       debugShowCheckedModeBanner: false,
-        home:bottomnavbar(),
+        home:SplashScreen(),
     );
   }
 }
