@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.cyan),
       debugShowCheckedModeBanner: false,
-        home:SplashScreen(),
+        home:bottomnavbar(),
     );
   }
 }
@@ -54,24 +54,19 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             // Add your app logo or illustration here
             Image.asset(
-              'images/tastytrove-high-resolution-logo.png', // Replace with your image asset path
-              fit: BoxFit.fill,
+              'images/latest.png', // Replace with your image asset path
+              height: 330,
+              width: 330,
             ),
-            SizedBox(height: 20.0),
-            Text(
-              'TastyTroves',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              'Discover a world of flavors',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
+
+            Center(
+              child: Text(
+                "Where Flavor Meets Choice",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold
+                ),
               ),
             ),
             SizedBox(height: 30.0),

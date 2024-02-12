@@ -35,7 +35,7 @@ class _signupState extends State<signup> {
             flexibleSpace: FlexibleSpaceBar(
               background: Image(
                 image: AssetImage(
-                    "images/279747-grocery-store-grocery-vegetable-and-carrot-hd.jpg"),
+                    "images/saladback.jpg"),
                 fit: BoxFit.fill,
               ),
             ),
