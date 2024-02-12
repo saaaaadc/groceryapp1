@@ -31,7 +31,7 @@ class _signupState extends State<signup> {
           SliverAppBar(
             pinned: true,
             floating: true,
-            expandedHeight: 400.0,
+            expandedHeight: 200.0,
             flexibleSpace: FlexibleSpaceBar(
               background: Image(
                 image: AssetImage(

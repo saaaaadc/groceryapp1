@@ -23,11 +23,12 @@ class againpass extends StatelessWidget {
             children: [
               insert(store: emailidd, clue: 'email',),
               SizedBox(height: 10),
-              ElevatedButton(
+              MaterialButton(
                   onPressed: () {
                     resetttpassword(context);
                   },
-                  child: Text('OK'))
+                  color: Colors.green[900],
+                  child: Text('OK',style: TextStyle(color: Colors.white),))
             ],
           ),
         ),

@@ -15,8 +15,12 @@ class _AddressState extends State<Address> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[900],
-        title: Text("My Addresses"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        foregroundColor: Colors.black,
+        leading: BackButton(),
+        title: Text("My Addresses", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.black)),
       ),
       body: Column(
         children: [
@@ -28,12 +32,15 @@ class _AddressState extends State<Address> {
               padding: EdgeInsets.all(16.0),
               height: 80,
               width: MediaQuery.of(context).size.width,
-              color: Colors.black54, // Set the background color to black
-              child: Center(
-                child: Text(
-                  "Add Address",
-                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Colors.white),
-                ),
+              color: Colors.black, // Set the background color to black
+              child: Row(
+                children: [
+                  Icon(Icons.add,color: Colors.white,),
+                  Text(
+                    "Add Address",
+                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                ],
               ),
             ),
           ),
@@ -70,11 +77,11 @@ class _AddressState extends State<Address> {
 
             });
           },
-              color: Colors.green[900],
-              child: Text("Add")),
+              color: Colors.black,
+              child: Text("Add",style: TextStyle(color: Colors.white),)),
           MaterialButton(onPressed: (){Navigator.of(context).pop();},
-            color: Colors.green[900],
-            child:Text('Close'),),
+            color: Colors.black,
+            child:Text('Close',style: TextStyle(color: Colors.white)),),
 
         ],
         title: Text('Add Address'),
@@ -92,7 +99,6 @@ class _AddressState extends State<Address> {
                     focusedBorder:OutlineInputBorder(
                       borderRadius:BorderRadius.circular(10),
                       borderSide:BorderSide(color:Colors.black),
-
                     )
                 ),
               ),
@@ -112,7 +118,6 @@ class _AddressState extends State<Address> {
                   ),
                 ),
               ),
-
             )
           ],
         )
@@ -142,20 +147,18 @@ class _AddressState extends State<Address> {
               MaterialButton(onPressed: (){
                 edit(namess,datass);
               },
-                color: Colors.green[900],
-                child: Text("Edit"),),
+                color: Colors.black,
+                child: Text("Edit",style: TextStyle(color: Colors.white)),),
               MaterialButton(onPressed: (){
                 delete(index);
               },
-                color: Colors.green[900],
-                child: Text("Remove"),)
+                color: Colors.black,
+                child: Text("Remove",style: TextStyle(color: Colors.white)),)
             ],
           )
         ],
       ),
-
     );
-
   }
 //first alert
   void alert(BuildContext context){
@@ -169,11 +172,11 @@ class _AddressState extends State<Address> {
               addcontainer(context, sahi.text, saad.text);
             });
           },
-              color: Colors.green[900],
-              child: Text("Add")),
+              color: Colors.black,
+              child: Text("Add",style: TextStyle(color: Colors.white))),
           MaterialButton(onPressed: (){Navigator.of(context).pop();},
-            color: Colors.green[900],
-            child:Text('Close'),),
+            color: Colors.black,
+            child:Text('Close',style: TextStyle(color: Colors.white)),),
         ],
         title: Text('Add Address'),
         content:Column(
@@ -211,7 +214,6 @@ class _AddressState extends State<Address> {
                   ),
                 ),
               ),
-
             )
           ],
         )
@@ -227,7 +229,7 @@ class _AddressState extends State<Address> {
             children: [
               Container(
                 height: 100,
-                color: Colors.white54,
+                color: Colors.amber[200],
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -245,13 +247,13 @@ class _AddressState extends State<Address> {
                   MaterialButton(onPressed: (){
                     edit(namess,datass);
                   },
-                    color: Colors.green[900],
-                    child: Text("Edit"),),
+                    color: Colors.black,
+                    child: Text("Edit",style: TextStyle(color: Colors.white)),),
                   MaterialButton(onPressed: (){
                     delete(index);
                   },
-                    color: Colors.green[900],
-                    child: Text("Remove"),)
+                    color: Colors.black,
+                    child: Text("Remove",style: TextStyle(color: Colors.white)),)
                 ],
               )
             ],

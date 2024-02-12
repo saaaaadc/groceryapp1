@@ -59,7 +59,7 @@ class _OnboardState extends State<Onboard> {
                 itemBuilder: (_, i) {
                   return Padding(
                     padding: EdgeInsets.only(
-                        top: 40.0, left: 20.0, right: 20.0),
+                        left: 20.0, right: 20.0),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [

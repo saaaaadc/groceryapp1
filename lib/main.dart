@@ -30,7 +30,65 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.cyan),
       debugShowCheckedModeBanner: false,
-        home:bottomnavbar(),
+        home:SplashScreen(),
+    );
+  }
+}
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.orangeAccent,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Add your app logo or illustration here
+            Image.asset(
+              'images/tastytrove-high-resolution-logo.png', // Replace with your image asset path
+              fit: BoxFit.fill,
+            ),
+            SizedBox(height: 20.0),
+            Text(
+              'TastyTroves',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              'Discover a world of flavors',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16.0,
+              ),
+            ),
+            SizedBox(height: 30.0),
+            ElevatedButton(
+              onPressed: () {
+               Navigator.push(context, MaterialPageRoute(builder: (context) => login(),));
+              },
+              child: Text('Get Started'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                onPrimary: Colors.orangeAccent,
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
