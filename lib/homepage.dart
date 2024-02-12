@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp1/details.dart';
 import 'package:groceryapp1/service/database.dart';
+import 'package:groceryapp1/service/sharedpreferences.dart';
 
 class home extends StatefulWidget {
   home({super.key});
@@ -11,11 +12,20 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
+  String?  name;
 
   bool icecream = false,pizza = false, burger = false, salad = false;
 
   Stream? foodItemStream;
+
+  getthesharedpref()async{
+    name= await SharedPreferenceHelper().getUserName();
+    setState(() {
+
+    });
+  }
 ontheload()async{
+  await getthesharedpref();
   foodItemStream = await DatabaseMethods().getFoodItem("Salad");
   setState(() {
 
@@ -64,16 +74,12 @@ ontheload()async{
                           children: [
                             Container(
                                 width: MediaQuery.of(context).size.width/2,
-                                child: Text(ds["Name"])
+                                child: Center(child: Text(ds["Name"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)))
                             ),
                             SizedBox(height: 5,),
                             Container(
                                 width: MediaQuery.of(context).size.width/2,
-                                child: Text("Barbeque Burger")),
-                            SizedBox(height: 5,),
-                            Container(
-                                width: MediaQuery.of(context).size.width/2,
-                                child: Text("\$"+ds["Price"],style: TextStyle(fontWeight: FontWeight.bold),)),
+                                child: Center(child: Text("\$"+ds["Price"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red)))),
                           ],
                         )
                       ],
@@ -121,7 +127,7 @@ ontheload()async{
                           ),
                           Text(ds["Name"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)),
                           SizedBox(height: 5,),
-                          Text("\$"+ds["Price"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black))
+                          Text("\$"+ds["Price"],style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.red))
                         ],
                       ),
                     ),
@@ -142,10 +148,12 @@ ontheload()async{
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Hello User',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)
+                  Text("Hello",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.black)),
+                  SizedBox(width: 10),
+                  Text(name!,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.black)
                   ),
+                  SizedBox(width: 180),
                   Container(
                     margin: EdgeInsets.only(right: 20),
                     padding: EdgeInsets.all(3),
@@ -158,9 +166,9 @@ ontheload()async{
                 ],
               ),
               SizedBox(height: 20,),
-              Text('Delicious Food',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),
+              Text('Delicious Food',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black),
               ),
-              Text('Discover and Get Great Food',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.black),),
+              Text('Discover and Get Great Food',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.black),),
               SizedBox(height: 20,),
               showItem(),
               SizedBox(height: 20,),

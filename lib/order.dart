@@ -81,7 +81,7 @@ class _OrderState extends State<Order> {
                             decoration: BoxDecoration(
                                 border: Border.all(),
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Center(child: Text(ds["Quantity"])),
+                            child: Center(child: Text(ds["Quantity"],style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black))),
                           ),
                           SizedBox(
                             width: 20.0,
@@ -101,10 +101,11 @@ class _OrderState extends State<Order> {
                             children: [
                               Text(
                                 ds["Name"],
-
+                                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black)
                               ),
+                              SizedBox(height: 5,),
                               Text(
-                                "\$"+ ds["Total"],
+                                "\$"+ ds["Total"],style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.red)
 
                               )
                             ],
@@ -134,7 +135,7 @@ class _OrderState extends State<Order> {
                     child: Center(
                         child: Text(
                           "Food Cart",
-
+                            style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.black)
                         )))),
             SizedBox(
               height: 20.0,
@@ -150,11 +151,11 @@ class _OrderState extends State<Order> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Total Price",
+                    "Total Price",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black)
                   ),
                   Text(
                     "\$"+ total.toString(),
-
+                      style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.red)
                   )
                 ],
               ),

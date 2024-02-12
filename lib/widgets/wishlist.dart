@@ -17,11 +17,11 @@ class Wishlist extends StatefulWidget {
 class _WishlistState extends State<Wishlist> {
   String? id, wallet;
   int a = 1, total = 0;
-  int amount2=0;
+  int amount1=0;
 
   void startTimer(){
     Timer(Duration(seconds: 3), () {
-      amount2=total;
+      amount1=total;
       setState(() {
 
       });
@@ -83,7 +83,7 @@ class _WishlistState extends State<Wishlist> {
                             decoration: BoxDecoration(
                                 border: Border.all(),
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Center(child: Text(ds["Quantity"])),
+                            child: Center(child: Text(ds["Quantity"],style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black))),
                           ),
                           SizedBox(
                             width: 20.0,
@@ -103,11 +103,11 @@ class _WishlistState extends State<Wishlist> {
                             children: [
                               Text(
                                 ds["Name"],
-
+                                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black)
                               ),
                               Text(
                                 "\$"+ ds["Total"],
-
+                                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.red)
                               )
                             ],
                           ),
@@ -137,7 +137,7 @@ class _WishlistState extends State<Wishlist> {
                     child: Center(
                         child: Text(
                           "Wishlist",
-
+                            style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.black)
                         )))),
             SizedBox(
               height: 20.0,
@@ -153,10 +153,10 @@ class _WishlistState extends State<Wishlist> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Total Price",
+                    "Total Price",style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color: Colors.black)
                   ),
                   Text(
-                    "\$"+ total.toString(),
+                    "\$"+ total.toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.red)
 
                   )
                 ],
@@ -167,7 +167,7 @@ class _WishlistState extends State<Wishlist> {
             ),
             GestureDetector(
               onTap: ()async{
-                int amount= int.parse(wallet!)-amount2;
+                int amount= int.parse(wallet!)-amount1;
                 await DatabaseMethods().UpdateUserWallet(id!, amount.toString());
                 await SharedPreferenceHelper().saveUserWallet(amount.toString());
               },
