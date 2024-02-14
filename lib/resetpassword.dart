@@ -1,6 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:groceryapp1/login_page.dart';
 import 'package:groceryapp1/on_board_screen.dart';
 import 'package:groceryapp1/refaction.dart';
 import 'package:groceryapp1/signup.dart';
@@ -50,7 +51,7 @@ class againpass extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>Onboard(),
+              builder: (context) =>login(),
             ));
       } on FirebaseAuthException catch (f) {
         print(f);

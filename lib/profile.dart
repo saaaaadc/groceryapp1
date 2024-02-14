@@ -5,6 +5,7 @@ import 'package:groceryapp1/service/auth.dart';
 import 'package:groceryapp1/service/database.dart';
 import 'package:groceryapp1/service/sharedpreferences.dart';
 import 'package:groceryapp1/widgets/address.dart';
+import 'package:groceryapp1/widgets/feedback.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:random_string/random_string.dart';
 class Profile extends StatefulWidget {
@@ -280,7 +281,7 @@ class _ProfileState extends State<Profile> {
               ),
               GestureDetector(
                 onTap: (){
-                  Authmethods().deleteuser();
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => feedback(),));
                 },
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 20.0),
@@ -298,7 +299,7 @@ class _ProfileState extends State<Profile> {
                       child: Row(
                         children: [
                           Icon(
-                            Icons.delete,
+                            Icons.rate_review,
                             color: Colors.black,
                           ),
                           SizedBox(
@@ -308,7 +309,7 @@ class _ProfileState extends State<Profile> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Delete Account",
+                                "Review",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 16.0,
