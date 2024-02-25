@@ -3,30 +3,32 @@ import 'package:groceryapp1/service/database.dart';
 import 'package:groceryapp1/service/sharedpreferences.dart';
 import 'package:groceryapp1/wallet.dart';
 import 'package:groceryapp1/widgets/wishlist.dart';
+
 class Details extends StatefulWidget {
   String image, name, detail, price;
-Details({required this.image,required this.name,required this.detail,required this.price});
+
+  Details(
+      {required this.image,
+      required this.name,
+      required this.detail,
+      required this.price});
 
   @override
   State<Details> createState() => _DetailsState();
 }
+
 class _DetailsState extends State<Details> {
   int a = 1, total = 0;
   String? id;
 
-  getthesharedpref()async{
+  getthesharedpref() async {
     id = await SharedPreferenceHelper().getUserId();
-    setState(() {
-
-    });
-
+    setState(() {});
   }
-  ontheload()async{
+
+  ontheload() async {
     await getthesharedpref();
-    setState(() {
-
-    });
-
+    setState(() {});
   }
 
   @override
@@ -36,7 +38,9 @@ class _DetailsState extends State<Details> {
     ontheload();
     total = int.parse(widget.price);
   }
-  bool isFavourite= false;
+
+  bool isFavourite = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +69,8 @@ class _DetailsState extends State<Details> {
                       "Image": widget.image,
                     };
 
-                    await DatabaseMethods().addFoodtoWishlist(addFoodtoWishlist, id);
+                    await DatabaseMethods()
+                        .addFoodtoWishlist(addFoodtoWishlist, id);
 
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       backgroundColor: Colors.orangeAccent,
@@ -87,10 +92,12 @@ class _DetailsState extends State<Details> {
                     }
                   },
                   icon: isFavourite
-                      ? Icon(Icons.favorite, color: Colors.red,)
+                      ? Icon(
+                          Icons.favorite,
+                          color: Colors.red,
+                        )
                       : Icon(Icons.favorite_border_outlined),
                 ),
-
               ],
             ),
             Image.network(
@@ -107,10 +114,11 @@ class _DetailsState extends State<Details> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.name,style: TextStyle(fontWeight: FontWeight.bold,fontSize:25,)
-                    ),
-
+                    Text(widget.name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        )),
                   ],
                 ),
                 Spacer(),
@@ -118,7 +126,7 @@ class _DetailsState extends State<Details> {
                   onTap: () {
                     if (a > 1) {
                       --a;
-                      total = total-int.parse(widget.price);
+                      total = total - int.parse(widget.price);
                     }
                     setState(() {});
                   },
@@ -135,17 +143,14 @@ class _DetailsState extends State<Details> {
                 SizedBox(
                   width: 20.0,
                 ),
-                Text(
-                  a.toString()
-
-                ),
+                Text(a.toString()),
                 SizedBox(
                   width: 20.0,
                 ),
                 GestureDetector(
                   onTap: () {
                     ++a;
-                    total = total+int.parse(widget.price);
+                    total = total + int.parse(widget.price);
                     setState(() {});
                   },
                   child: Container(
@@ -164,7 +169,11 @@ class _DetailsState extends State<Details> {
               height: 20.0,
             ),
             Text(
-              widget.detail,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,fontStyle: FontStyle.italic),
+              widget.detail,
+              style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  fontStyle: FontStyle.italic),
             ),
             SizedBox(
               height: 30.0,
@@ -205,16 +214,20 @@ class _DetailsState extends State<Details> {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "\$"+total.toString(),style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),
-
+                        "\$" + total.toString(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.red),
                       )
                     ],
                   ),
                   Column(
                     children: [
                       GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Wallet()));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Wallet()));
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width / 2,
@@ -245,21 +258,23 @@ class _DetailsState extends State<Details> {
                                   color: Colors.white,
                                 ),
                               ),
-
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       GestureDetector(
-                        onTap: ()async{
-                          Map<String, dynamic> addFoodtoCart={
-                            "Name":widget.name,
-                            "Quantity":a.toString(),
-                            "Total":total.toString(),
-                            "Image":widget.image,
+                        onTap: () async {
+                          Map<String, dynamic> addFoodtoCart = {
+                            "Name": widget.name,
+                            "Quantity": a.toString(),
+                            "Total": total.toString(),
+                            "Image": widget.image,
                           };
-                          await DatabaseMethods().addFoodtoCart(addFoodtoCart, id);
+                          await DatabaseMethods()
+                              .addFoodtoCart(addFoodtoCart, id);
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               backgroundColor: Colors.orangeAccent,
                               content: Text(

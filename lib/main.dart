@@ -5,33 +5,36 @@ import 'package:groceryapp1/admi/admin_homepage.dart';
 import 'package:groceryapp1/admi/admin_login.dart';
 import 'package:groceryapp1/bottomnavbar.dart';
 import 'package:groceryapp1/login_page.dart';
-import 'package:groceryapp1/on_board_screen.dart';
 import 'package:groceryapp1/wallet.dart';
-import 'package:groceryapp1/welcomepage.dart';
-import 'package:groceryapp1/widgets/app_constants.dart';
-void main() async{
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: FirebaseOptions(apiKey:"AIzaSyDpj2mj-gJmVJv2785chdyBfI6lZ8z9M6Q",
-        appId: "1:722592910536:android:2e748b58da5faa69bb69f",
-        messagingSenderId: "722592910536",
-        projectId:"groceryapp-1-5b7ee",
-      storageBucket: "gs://groceryapp-1-5b7ee.appspot.com",)
-  );
-  runApp( MyApp(),
+      options: FirebaseOptions(
+    apiKey: "AIzaSyDpj2mj-gJmVJv2785chdyBfI6lZ8z9M6Q",
+    appId: "1:722592910536:android:2e748b58da5faa69bb69f",
+    messagingSenderId: "722592910536",
+    projectId: "groceryapp-1-5b7ee",
+    storageBucket: "gs://groceryapp-1-5b7ee.appspot.com",
+  ));
+  runApp(
+    MyApp(),
   );
 }
+
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-   @override
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.cyan),
       debugShowCheckedModeBanner: false,
-        home:AdminLogin(),
+      home: AdminLogin(),
     );
   }
 }
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -41,7 +44,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,21 +58,23 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 330,
               width: 330,
             ),
-
             Center(
               child: Text(
                 "Where Flavor Meets Choice",
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold
-                ),
+                    color: Colors.white,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(height: 30.0),
             ElevatedButton(
               onPressed: () {
-               Navigator.push(context, MaterialPageRoute(builder: (context) => login(),));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => login(),
+                    ));
               },
               child: Text('Get Started'),
               style: ElevatedButton.styleFrom(
@@ -85,4 +89,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-

@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp1/admi/admin_homepage.dart';
 
-
 class AdminLogin extends StatefulWidget {
   const AdminLogin({super.key});
 
@@ -26,7 +25,7 @@ class _AdminLoginState extends State<AdminLogin> {
           children: [
             Container(
               margin:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height / 2),
+                  EdgeInsets.only(top: MediaQuery.of(context).size.height / 2),
               padding: EdgeInsets.only(top: 45.0, left: 20.0, right: 20.0),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
@@ -76,7 +75,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color:
-                                        Color.fromARGB(255, 160, 160, 147)),
+                                            Color.fromARGB(255, 160, 160, 147)),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Center(
                                   child: TextFormField(
@@ -105,7 +104,7 @@ class _AdminLoginState extends State<AdminLogin> {
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                         color:
-                                        Color.fromARGB(255, 160, 160, 147)),
+                                            Color.fromARGB(255, 160, 160, 147)),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Center(
                                   child: TextFormField(
@@ -128,12 +127,13 @@ class _AdminLoginState extends State<AdminLogin> {
                                 height: 40.0,
                               ),
                               GestureDetector(
-                                onTap: (){
+                                onTap: () {
                                   LoginAdmin();
                                 },
                                 child: Container(
                                   padding: EdgeInsets.symmetric(vertical: 12.0),
-                                  margin: EdgeInsets.symmetric(horizontal: 20.0),
+                                  margin:
+                                      EdgeInsets.symmetric(horizontal: 20.0),
                                   width: MediaQuery.of(context).size.width,
                                   decoration: BoxDecoration(
                                       color: Colors.black,
@@ -181,7 +181,8 @@ class _AdminLoginState extends State<AdminLogin> {
                 style: TextStyle(fontSize: 18.0),
               )));
         } else {
-          Route route = MaterialPageRoute(builder: (context) => adminhomepage());
+          Route route =
+              MaterialPageRoute(builder: (context) => adminhomepage());
           Navigator.pushReplacement(context, route);
         }
       });

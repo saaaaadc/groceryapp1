@@ -30,6 +30,7 @@ class _AddFoodState extends State<AddFood> {
     selectedImage = File(image.path);
     setState(() {});
   }
+
   uploadItem() async {
     if (selectedImage != null &&
         namecontroller.text != "" &&
@@ -38,10 +39,8 @@ class _AddFoodState extends State<AddFood> {
       String addId = randomAlphaNumeric(10);
 
       Reference firebaseStorageRef =
-      FirebaseStorage.instance.ref().child("blogImages").child(addId);
+          FirebaseStorage.instance.ref().child("blogImages").child(addId);
       final UploadTask task = firebaseStorageRef.putFile(selectedImage!);
-
-
 
       var downloadUrl = await (await task).ref.getDownloadURL();
 
@@ -77,75 +76,72 @@ class _AddFoodState extends State<AddFood> {
         centerTitle: true,
         title: Text(
           "Add Item",
-
         ),
       ),
       body: SingleChildScrollView(
         child: Container(
           margin:
-          EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
+              EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 50.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "Upload the Item Picture",
-
               ),
               SizedBox(
                 height: 20.0,
               ),
               selectedImage == null
                   ? GestureDetector(
-                onTap: () {
-                  getImage();
-                },
-                child: Center(
-                  child: Material(
-                    elevation: 4.0,
-                    borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        border:
-                        Border.all(color: Colors.black, width: 1.5),
-                        borderRadius: BorderRadius.circular(20),
+                      onTap: () {
+                        getImage();
+                      },
+                      child: Center(
+                        child: Material(
+                          elevation: 4.0,
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            width: 150,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: Colors.black, width: 1.5),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Icon(
+                              Icons.camera_alt_outlined,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
                       ),
-                      child: Icon(
-                        Icons.camera_alt_outlined,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-              )
+                    )
                   : Center(
-                child: Material(
-                  elevation: 4.0,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 1.5),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.file(
-                        selectedImage!,
-                        fit: BoxFit.cover,
+                      child: Material(
+                        elevation: 4.0,
+                        borderRadius: BorderRadius.circular(20),
+                        child: Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black, width: 1.5),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.file(
+                              selectedImage!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
               SizedBox(
                 height: 30.0,
               ),
               Text(
                 "Item Name",
-
               ),
               SizedBox(
                 height: 10.0,
@@ -159,9 +155,9 @@ class _AddFoodState extends State<AddFood> {
                 child: TextField(
                   controller: namecontroller,
                   decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Enter Item Name",
-                      ),
+                    border: InputBorder.none,
+                    hintText: "Enter Item Name",
+                  ),
                 ),
               ),
               SizedBox(
@@ -169,7 +165,6 @@ class _AddFoodState extends State<AddFood> {
               ),
               Text(
                 "Item Price",
-
               ),
               SizedBox(
                 height: 10.0,
@@ -183,9 +178,9 @@ class _AddFoodState extends State<AddFood> {
                 child: TextField(
                   controller: pricecontroller,
                   decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Enter Item Price",
-                      ),
+                    border: InputBorder.none,
+                    hintText: "Enter Item Price",
+                  ),
                 ),
               ),
               SizedBox(
@@ -193,7 +188,6 @@ class _AddFoodState extends State<AddFood> {
               ),
               Text(
                 "Item Detail",
-
               ),
               SizedBox(
                 height: 10.0,
@@ -208,9 +202,9 @@ class _AddFoodState extends State<AddFood> {
                   maxLines: 6,
                   controller: detailcontroller,
                   decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Enter Item Detail",
-                      ),
+                    border: InputBorder.none,
+                    hintText: "Enter Item Detail",
+                  ),
                 ),
               ),
               SizedBox(
@@ -218,7 +212,6 @@ class _AddFoodState extends State<AddFood> {
               ),
               Text(
                 "Select Category",
-
               ),
               SizedBox(
                 height: 20.0,
@@ -231,33 +224,33 @@ class _AddFoodState extends State<AddFood> {
                     borderRadius: BorderRadius.circular(10)),
                 child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
-                      items: fooditems
-                          .map((item) => DropdownMenuItem<String>(
+                  items: fooditems
+                      .map((item) => DropdownMenuItem<String>(
                           value: item,
                           child: Text(
                             item,
                             style:
-                            TextStyle(fontSize: 18.0, color: Colors.black),
+                                TextStyle(fontSize: 18.0, color: Colors.black),
                           )))
-                          .toList(),
-                      onChanged: ((value) => setState(() {
+                      .toList(),
+                  onChanged: ((value) => setState(() {
                         this.value = value;
                       })),
-                      dropdownColor: Colors.white,
-                      hint: Text("Select Category"),
-                      iconSize: 36,
-                      icon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.black,
-                      ),
-                      value: value,
-                    )),
+                  dropdownColor: Colors.white,
+                  hint: Text("Select Category"),
+                  iconSize: 36,
+                  icon: Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.black,
+                  ),
+                  value: value,
+                )),
               ),
               SizedBox(
                 height: 30.0,
               ),
               GestureDetector(
-                onTap: ()async {
+                onTap: () async {
                   await uploadItem();
                 },
                 child: Center(

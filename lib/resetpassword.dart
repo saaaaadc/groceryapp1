@@ -1,10 +1,10 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:groceryapp1/login_page.dart';
 import 'package:groceryapp1/on_board_screen.dart';
 import 'package:groceryapp1/refaction.dart';
 import 'package:groceryapp1/signup.dart';
+
 class againpass extends StatelessWidget {
   TextEditingController emailidd = TextEditingController();
 
@@ -22,14 +22,20 @@ class againpass extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              insert(store: emailidd, clue: 'email',),
+              insert(
+                store: emailidd,
+                clue: 'email',
+              ),
               SizedBox(height: 10),
               MaterialButton(
                   onPressed: () {
                     resetttpassword(context);
                   },
                   color: Colors.green[900],
-                  child: Text('OK',style: TextStyle(color: Colors.white),))
+                  child: Text(
+                    'OK',
+                    style: TextStyle(color: Colors.white),
+                  ))
             ],
           ),
         ),
@@ -51,7 +57,7 @@ class againpass extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>login(),
+              builder: (context) => login(),
             ));
       } on FirebaseAuthException catch (f) {
         print(f);

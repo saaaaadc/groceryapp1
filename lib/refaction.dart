@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class insert extends StatelessWidget {
   final Widget? logo;
   final String? clue;
@@ -7,13 +8,20 @@ class insert extends StatelessWidget {
   final Color? fillColor;
   final String? Function(String?)? validators;
 
-  insert({super.key, this.logo, this.clue, this.store, this.suffixIcon, this.fillColor, this.validators});
+  insert(
+      {super.key,
+      this.logo,
+      this.clue,
+      this.store,
+      this.suffixIcon,
+      this.fillColor,
+      this.validators});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
         controller: store,
-        validator:validators,
+        validator: validators,
         decoration: InputDecoration(
           filled: true,
           fillColor: fillColor,

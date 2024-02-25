@@ -8,9 +8,10 @@ class feedback extends StatefulWidget {
 }
 
 class _feedbackState extends State<feedback> {
-  List<Widget> datas=[];
+  List<Widget> datas = [];
 
-  int  index =0;
+  int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,24 +21,32 @@ class _feedbackState extends State<feedback> {
         centerTitle: true,
         foregroundColor: Colors.black,
         leading: BackButton(),
-        title: Text("My Reviews", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.black)),
+        title: Text("My Reviews",
+            style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.black)),
       ),
       body: Column(
         children: [
           GestureDetector(
-            onTap: (){
+            onTap: () {
               alert(context);
             },
             child: Container(
               padding: EdgeInsets.all(16.0),
               height: 80,
               width: MediaQuery.of(context).size.width,
-              color: Colors.black, // Set the background color to black
+              color: Colors.black,
+              // Set the background color to black
               child: Row(
                 children: [
                   Text(
                     "Share your Opinion",
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                 ],
               ),
@@ -56,75 +65,83 @@ class _feedbackState extends State<feedback> {
       ),
     );
   }
-  void delete(int index){
+
+  void delete(int index) {
     setState(() {
       datas.removeAt(index);
     });
   }
+
 //update cheyan ulla alert box
-  void edit(name,data){
-    TextEditingController saads =TextEditingController();
-    TextEditingController sahis =TextEditingController();
+  void edit(name, data) {
+    TextEditingController saads = TextEditingController();
+    TextEditingController sahis = TextEditingController();
     saads.text = name;
-    sahis.text=data;
-    showDialog(context: context, builder:(Context)=>AlertDialog(
-        actions: [
-          MaterialButton(onPressed: (){
-            setState(() {
-              datas[index]=update(index, saads.text, sahis.text);
-              Navigator.pop(context);
-
-            });
-          },
-              color: Colors.black,
-              child: Text("Submit",style: TextStyle(color: Colors.white),)),
-          MaterialButton(onPressed: (){Navigator.of(context).pop();},
-            color: Colors.black,
-            child:Text('Back',style: TextStyle(color: Colors.white)),),
-
-        ],
-        content:Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller:saads,
-                decoration:InputDecoration(
-                    enabledBorder:OutlineInputBorder(
-                      borderRadius:BorderRadius.circular(10),
-                      borderSide:BorderSide(color:Colors.black),
+    sahis.text = data;
+    showDialog(
+        context: context,
+        builder: (Context) => AlertDialog(
+                actions: [
+                  MaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          datas[index] = update(index, saads.text, sahis.text);
+                          Navigator.pop(context);
+                        });
+                      },
+                      color: Colors.black,
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    color: Colors.black,
+                    child: Text('Back', style: TextStyle(color: Colors.white)),
+                  ),
+                ],
+                content: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: saads,
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(color: Colors.black),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(color: Colors.black),
+                            )),
+                      ),
                     ),
-                    focusedBorder:OutlineInputBorder(
-                      borderRadius:BorderRadius.circular(10),
-                      borderSide:BorderSide(color:Colors.black),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: sahis,
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                        ),
+                      ),
                     )
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: sahis,
-                decoration:InputDecoration(
-                  enabledBorder:OutlineInputBorder(
-                    borderRadius:BorderRadius.circular(10),
-                    borderSide:BorderSide(color:Colors.black),
-                  ),
-                  focusedBorder:OutlineInputBorder(
-                    borderRadius:BorderRadius.circular(10),
-                    borderSide:BorderSide(color:Colors.black),
-                  ),
-                ),
-              ),
-            )
-          ],
-        )
-    ));
-
+                  ],
+                )));
   }
+
 //upadate container
-  update(indexs,namess,datass){
-    return  Padding(
+  update(indexs, namess, datass) {
+    return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
@@ -132,105 +149,127 @@ class _feedbackState extends State<feedback> {
             height: 100,
             color: Colors.amber[200],
             width: MediaQuery.of(context).size.width,
-            child: Column(mainAxisAlignment:MainAxisAlignment.spaceBetween,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(namess,style: TextStyle(fontSize:15,fontWeight:FontWeight.bold),),
-                Text(datass,style:TextStyle(fontSize:15,fontWeight: FontWeight.bold)),
+                Text(
+                  namess,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                Text(datass,
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
               ],
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MaterialButton(onPressed: (){
-                edit(namess,datass);
-              },
+              MaterialButton(
+                onPressed: () {
+                  edit(namess, datass);
+                },
                 color: Colors.black,
-                child: Text("Edit",style: TextStyle(color: Colors.white)),),
-              MaterialButton(onPressed: (){
-                delete(index);
-              },
+                child: Text("Edit", style: TextStyle(color: Colors.white)),
+              ),
+              MaterialButton(
+                onPressed: () {
+                  delete(index);
+                },
                 color: Colors.black,
-                child: Text("Remove",style: TextStyle(color: Colors.white)),)
+                child: Text("Remove", style: TextStyle(color: Colors.white)),
+              )
             ],
           )
         ],
       ),
     );
   }
-//first alert
-  void alert(BuildContext context){
-    TextEditingController saad =TextEditingController();
-    TextEditingController sahi =TextEditingController();
-    showDialog(context: context, builder:(Context)=>AlertDialog(
-        actions: [
-          MaterialButton(onPressed: (){
-            setState(() {
-              Navigator.pop(context);
-              addcontainer(context, sahi.text, saad.text);
-            });
-          },
-              color: Colors.black,
-              child: Text("Submit",style: TextStyle(color: Colors.white))),
-          MaterialButton(onPressed: (){Navigator.of(context).pop();},
-            color: Colors.black,
-            child:Text('Back',style: TextStyle(color: Colors.white)),),
-        ],
-        content:Column(
-          children: [
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: sahi,
-                decoration:InputDecoration(
-                  label: Text("Review"),
-                  enabledBorder:OutlineInputBorder(
-                    borderRadius:BorderRadius.circular(10),
-                    borderSide:BorderSide(color:Colors.black),
+//first alert
+  void alert(BuildContext context) {
+    TextEditingController saad = TextEditingController();
+    TextEditingController sahi = TextEditingController();
+    showDialog(
+        context: context,
+        builder: (Context) => AlertDialog(
+                actions: [
+                  MaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          Navigator.pop(context);
+                          addcontainer(context, sahi.text, saad.text);
+                        });
+                      },
+                      color: Colors.black,
+                      child: Text("Submit",
+                          style: TextStyle(color: Colors.white))),
+                  MaterialButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    color: Colors.black,
+                    child: Text('Back', style: TextStyle(color: Colors.white)),
                   ),
-                  focusedBorder:OutlineInputBorder(
-                    borderRadius:BorderRadius.circular(10),
-                    borderSide:BorderSide(color:Colors.black),
-                  ),
-                ),
-              ),
-            )
-          ],
-        )
-    ));
-  }
-  //first container
-  addcontainer(BuildContext context,namess,datass) {
-    datas.add(
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Container(
-                height: 100,
-                color: Colors.blue[200],
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                ],
+                content: Column(
                   children: [
-                    Text(namess,style: TextStyle(fontSize:15,fontWeight:FontWeight.bold),),
-                    Text(datass,style:TextStyle(fontSize:15,fontWeight: FontWeight.bold)),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: sahi,
+                        decoration: InputDecoration(
+                          label: Text("Review"),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    )
                   ],
+                )));
+  }
+
+  //first container
+  addcontainer(BuildContext context, namess, datass) {
+    datas.add(Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Container(
+            height: 100,
+            color: Colors.blue[200],
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  namess,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
-              ),
-              Center(
-                child: MaterialButton(onPressed: (){
-                  delete(index);
-                },
-                  color: Colors.black,
-                  child: Text("Remove",style: TextStyle(color: Colors.white)),),
-              )
-            ],
+                Text(datass,
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              ],
+            ),
           ),
-        )
-    );
+          Center(
+            child: MaterialButton(
+              onPressed: () {
+                delete(index);
+              },
+              color: Colors.black,
+              child: Text("Remove", style: TextStyle(color: Colors.white)),
+            ),
+          )
+        ],
+      ),
+    ));
     print(datas);
   }
 }
-

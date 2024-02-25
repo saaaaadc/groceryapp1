@@ -9,29 +9,36 @@ class DatabaseMethods {
   }
 
   UpdateUserWallet(String id, String amount) async {
-    return await FirebaseFirestore.instance.collection('users').doc(id).update(
-        {"Wallet": amount});
+    return await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update({"Wallet": amount});
   }
 
   Future addFoodItem(Map<String, dynamic> userInfoMap, String name) async {
     return await FirebaseFirestore.instance.collection(name).add(userInfoMap);
   }
 
-  Future<Stream<QuerySnapshot>> getFoodItem(String name)async{
+  Future<Stream<QuerySnapshot>> getFoodItem(String name) async {
     return await FirebaseFirestore.instance.collection(name).snapshots();
   }
+
   Future addFoodtoCart(Map<String, dynamic> userInfoMap, String? id) async {
     return await FirebaseFirestore.instance
         .collection('users')
-        .doc(id).collection("Cart")
+        .doc(id)
+        .collection("Cart")
         .add(userInfoMap);
   }
+
   Future addFoodtoWishlist(Map<String, dynamic> userInfoMap, String? id) async {
     return await FirebaseFirestore.instance
         .collection('users')
-        .doc(id).collection("Wishlist")
+        .doc(id)
+        .collection("Wishlist")
         .add(userInfoMap);
   }
+
   Future<void> removeFromCart(String? userId, String itemId) async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -40,6 +47,7 @@ class DatabaseMethods {
         .doc(itemId)
         .delete();
   }
+
   Future<void> removeFromWishlist(String? userId, String itemId) async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -49,11 +57,19 @@ class DatabaseMethods {
         .delete();
   }
 
-  Future<Stream<QuerySnapshot>> getFoodWishlist(String id)async{
-    return await FirebaseFirestore.instance.collection("users").doc(id).collection("Wishlist").snapshots();
-  }
-  Future<Stream<QuerySnapshot>> getFoodCart(String id)async{
-    return await FirebaseFirestore.instance.collection("users").doc(id).collection("Cart").snapshots();
+  Future<Stream<QuerySnapshot>> getFoodWishlist(String id) async {
+    return await FirebaseFirestore.instance
+        .collection("users")
+        .doc(id)
+        .collection("Wishlist")
+        .snapshots();
   }
 
+  Future<Stream<QuerySnapshot>> getFoodCart(String id) async {
+    return await FirebaseFirestore.instance
+        .collection("users")
+        .doc(id)
+        .collection("Cart")
+        .snapshots();
+  }
 }

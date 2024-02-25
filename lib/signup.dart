@@ -14,7 +14,6 @@ TextEditingController signemail = TextEditingController();
 TextEditingController signpassword = TextEditingController();
 TextEditingController signconpassword = TextEditingController();
 
-
 class signup extends StatefulWidget {
   signup({super.key});
 
@@ -34,8 +33,7 @@ class _signupState extends State<signup> {
             expandedHeight: 200.0,
             flexibleSpace: FlexibleSpaceBar(
               background: Image(
-                image: AssetImage(
-                    "images/saladback.jpg"),
+                image: AssetImage("images/saladback.jpg"),
                 fit: BoxFit.fill,
               ),
             ),
@@ -58,25 +56,25 @@ class _signupState extends State<signup> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: insert(
-                      validators: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please Enter Name';
-                        }
-                        return null;
-                      },
-                      store: signname,
+                        validators: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please Enter Name';
+                          }
+                          return null;
+                        },
+                        store: signname,
                         logo: Icon(Icons.perm_contact_cal_sharp),
                         clue: 'First Name'),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: insert(
-                      validators: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please Enter Email';
-                        }
-                        return null;
-                      },
+                        validators: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please Enter Email';
+                          }
+                          return null;
+                        },
                         store: signemail,
                         logo: Icon(Icons.email_outlined),
                         clue: 'Email'),
@@ -119,7 +117,9 @@ class _signupState extends State<signup> {
                     width: 310,
                     child: MaterialButton(
                       color: Colors.green[900],
-                      onPressed: () {signInUser(context);},
+                      onPressed: () {
+                        signInUser(context);
+                      },
                       child: Text(
                         "Sign Up",
                         style: TextStyle(
@@ -150,22 +150,25 @@ Future signInUser(BuildContext context) async {
   if (pass == con) {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: signemail.text.trim(),
-          password: signpassword.text.trim());
+          email: signemail.text.trim(), password: signpassword.text.trim());
       print('ok');
-      Navigator.push(context, MaterialPageRoute(builder: (context) => login(),));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => login(),
+          ));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           duration: Duration(seconds: 3),
           backgroundColor: Colors.brown[900],
           behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.all(10),
           content: Text('Account Created Successfully')));
-      String Id= randomAlphaNumeric(20);
-      Map<String, dynamic> addUserInfo={
-        "Name":signname.text,
-        "Email":signemail.text,
-        "Wallet":"0",
-        "Id":Id,
+      String Id = randomAlphaNumeric(20);
+      Map<String, dynamic> addUserInfo = {
+        "Name": signname.text,
+        "Email": signemail.text,
+        "Wallet": "0",
+        "Id": Id,
       };
       await DatabaseMethods().addUserDetail(addUserInfo, Id);
       await SharedPreferenceHelper().saveUserName(signname.text);
@@ -189,5 +192,3 @@ Future signInUser(BuildContext context) async {
         content: Text('Password does not match')));
   }
 }
-
-
