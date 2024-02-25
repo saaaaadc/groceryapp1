@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:groceryapp1/bottomnavbar.dart';
 import 'package:groceryapp1/login_page.dart';
-import 'package:groceryapp1/on_board_screen.dart';
 import 'package:groceryapp1/refaction.dart';
 import 'package:groceryapp1/service/database.dart';
 import 'package:groceryapp1/service/sharedpreferences.dart';
