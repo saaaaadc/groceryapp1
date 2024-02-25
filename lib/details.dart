@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:groceryapp1/service/database.dart';
-import 'package:groceryapp1/service/sharedpreferences.dart';
-import 'package:groceryapp1/wallet.dart';
-import 'package:groceryapp1/widgets/wishlist.dart';
+import 'package:foodorderingapp/service/database.dart';
+import 'package:foodorderingapp/service/sharedpreferences.dart';
+import 'package:foodorderingapp/wallet.dart';
+import 'package:foodorderingapp/widgets/wishlist.dart';
 
 class Details extends StatefulWidget {
   String image, name, detail, price;

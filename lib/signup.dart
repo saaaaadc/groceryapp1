@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:groceryapp1/bottomnavbar.dart';
-import 'package:groceryapp1/login_page.dart';
-import 'package:groceryapp1/refaction.dart';
-import 'package:groceryapp1/service/database.dart';
-import 'package:groceryapp1/service/sharedpreferences.dart';
+import 'package:foodorderingapp/bottomnavbar.dart';
+import 'package:foodorderingapp/login_page.dart';
+import 'package:foodorderingapp/refaction.dart';
+import 'package:foodorderingapp/service/database.dart';
+import 'package:foodorderingapp/service/sharedpreferences.dart';
 import 'package:random_string/random_string.dart';
 
 TextEditingController signname = TextEditingController();

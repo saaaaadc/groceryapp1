@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:groceryapp1/admi/admin_homepage.dart';
-import 'package:groceryapp1/admi/admin_login.dart';
-import 'package:groceryapp1/bottomnavbar.dart';
-import 'package:groceryapp1/login_page.dart';
-import 'package:groceryapp1/wallet.dart';
+import 'package:foodorderingapp/admi/admin_homepage.dart';
+import 'package:foodorderingapp/admi/admin_login.dart';
+import 'package:foodorderingapp/bottomnavbar.dart';
+import 'package:foodorderingapp/login_page.dart';
+import 'package:foodorderingapp/wallet.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

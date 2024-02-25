@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:groceryapp1/login_page.dart';
-import 'package:groceryapp1/refaction.dart';
-import 'package:groceryapp1/signup.dart';
+import 'package:foodorderingapp/login_page.dart';
+import 'package:foodorderingapp/refaction.dart';
+import 'package:foodorderingapp/signup.dart';
 
 class againpass extends StatelessWidget {
   TextEditingController emailidd = TextEditingController();

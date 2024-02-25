@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:groceryapp1/bottomnavbar.dart';
-import 'package:groceryapp1/homepage.dart';
-import 'package:groceryapp1/refaction.dart';
-import 'package:groceryapp1/resetpassword.dart';
-import 'package:groceryapp1/signup.dart';
+import 'package:foodorderingapp/bottomnavbar.dart';
+import 'package:foodorderingapp/homepage.dart';
+import 'package:foodorderingapp/refaction.dart';
+import 'package:foodorderingapp/resetpassword.dart';
+import 'package:foodorderingapp/signup.dart';
 
 TextEditingController newemail = TextEditingController();
 TextEditingController newpassword = TextEditingController();

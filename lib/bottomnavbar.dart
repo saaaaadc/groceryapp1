@@ -1,10 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:groceryapp1/homepage.dart';
-import 'package:groceryapp1/order.dart';
-import 'package:groceryapp1/profile.dart';
-import 'package:groceryapp1/wallet.dart';
-import 'package:groceryapp1/widgets/wishlist.dart';
+import 'package:foodorderingapp/homepage.dart';
+import 'package:foodorderingapp/order.dart';
+import 'package:foodorderingapp/profile.dart';
+import 'package:foodorderingapp/wallet.dart';
+import 'package:foodorderingapp/widgets/wishlist.dart';
 
 class bottomnavbar extends StatefulWidget {
   const bottomnavbar({super.key});

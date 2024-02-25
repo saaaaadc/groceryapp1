@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:groceryapp1/details.dart';
-import 'package:groceryapp1/service/database.dart';
-import 'package:groceryapp1/service/sharedpreferences.dart';
+import 'package:foodorderingapp/details.dart';
+import 'package:foodorderingapp/service/database.dart';
+import 'package:foodorderingapp/service/sharedpreferences.dart';
 
 class home extends StatefulWidget {
   home({super.key});

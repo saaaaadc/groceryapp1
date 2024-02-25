@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:groceryapp1/service/auth.dart';
-import 'package:groceryapp1/service/database.dart';
-import 'package:groceryapp1/service/sharedpreferences.dart';
-import 'package:groceryapp1/widgets/address.dart';
-import 'package:groceryapp1/widgets/feedback.dart';
+import 'package:foodorderingapp/service/auth.dart';
+import 'package:foodorderingapp/service/database.dart';
+import 'package:foodorderingapp/service/sharedpreferences.dart';
+import 'package:foodorderingapp/widgets/address.dart';
+import 'package:foodorderingapp/widgets/feedback.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:random_string/random_string.dart';
 
