@@ -186,7 +186,7 @@ class _homeState extends State<home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-          child: name == null ?
+          child:
         Container(
           margin: EdgeInsets.only(top: 20, left: 20),
           child: Column(
@@ -200,7 +200,7 @@ class _homeState extends State<home> {
                           fontWeight: FontWeight.bold,
                           color: Colors.black)),
                   SizedBox(width: 10),
-                  Text( name ?? "",
+                  Text(name!,
                       style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -252,7 +252,6 @@ class _homeState extends State<home> {
             ],
           ),
         )
-              : Container(),
       ),
     );
   }
