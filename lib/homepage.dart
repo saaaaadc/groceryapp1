@@ -12,6 +12,7 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
+  int currentSlide=0;
   String? name;
 
   bool icecream = false, pizza = false, burger = false, salad = false;
@@ -185,71 +186,116 @@ class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: SingleChildScrollView(
           child:
         Container(
           margin: EdgeInsets.only(top: 20, left: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text("Hello",
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black)),
-                  SizedBox(width: 10),
-                  Text(name!,
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black)),
-                  SizedBox(width: 180),
-                  Container(
-                    margin: EdgeInsets.only(right: 20),
-                    padding: EdgeInsets.all(3),
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 55,
+                    width: double.infinity,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.black,
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(30),
                     ),
-                    child: Icon(
-                      Icons.shopping_cart,
-                      color: Colors.white,
+                    padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
+                    child: Row(
+                      children: [
+                        Icon(Icons.search_outlined),
+                        SizedBox(width: 10),
+                        Flexible(
+                            flex: 4,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: "Search...",
+                                border: InputBorder.none
+                              ),
+                            )),
+                        Container(
+                          height: 25,
+                          width: 1.5,
+                          color: Colors.grey,
+                        ),
+                        IconButton(onPressed: (){}, icon:Icon(Icons.keyboard_option_key_outlined)),
+                      ],
                     ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Delicious Food',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black),
-              ),
-              Text(
-                'Discover and Get Great Food',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              showItem(),
-              SizedBox(
-                height: 20,
-              ),
-              Container(height: 270, child: allItems()),
-              SizedBox(
-                height: 20,
-              ),
-              allItemsvertically()
-            ],
+
+                  ),
+                ),
+
+                SizedBox(height: 20),
+                Stack(
+                  children: [
+                    Container(
+                      height: 200,
+                      width: double.infinity,
+                      child: PageView.builder(
+                        onPageChanged: (value){
+                          setState(() {
+                            currentSlide=value;
+                          });
+                        },
+                        itemCount: 4,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 200,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(image: AssetImage("images/Banner_5_jpg.jpg"),fit: BoxFit.fill)
+                                ),
+                              ),
+                            );
+                          },),
+                    ),
+                    Positioned.fill(
+                        bottom: 10,
+                        child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(4, (index) => AnimatedContainer(
+                            duration: Duration(milliseconds: 300),
+                          width:currentSlide == index ? 15 : 8,
+                          height: 8,
+                          margin: EdgeInsets.only(right: 3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                              color:currentSlide == index ? Colors.black : Colors.transparent,
+                            border: Border.all(color: Colors.black)
+                          ),
+                        )
+                        ),
+
+                      ),
+                    ))
+                  ],
+                ),
+
+
+
+                SizedBox(
+                  height: 20,
+                ),
+                showItem(),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(height: 270, child: allItems()),
+                SizedBox(
+                  height: 20,
+                ),
+                allItemsvertically()
+              ],
+            ),
           ),
         )
       ),
