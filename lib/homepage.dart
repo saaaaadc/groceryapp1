@@ -12,7 +12,7 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-  int currentSlide=0;
+  int currentSlide = 0;
   String? name;
 
   bool icecream = false, pizza = false, burger = false, salad = false;
@@ -186,119 +186,117 @@ class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
-          child:
-        Container(
-          margin: EdgeInsets.only(top: 20, left: 20),
-          child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 55,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 25,vertical: 5),
-                    child: Row(
-                      children: [
-                        Icon(Icons.search_outlined),
-                        SizedBox(width: 10),
-                        Flexible(
-                            flex: 4,
-                            child: TextField(
-                              decoration: InputDecoration(
+          child: Container(
+        margin: EdgeInsets.only(top: 20, left: 20),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 55,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                  child: Row(
+                    children: [
+                      Icon(Icons.search_outlined),
+                      SizedBox(width: 10),
+                      Flexible(
+                          flex: 4,
+                          child: TextField(
+                            decoration: InputDecoration(
                                 hintText: "Search...",
-                                border: InputBorder.none
-                              ),
-                            )),
-                        Container(
-                          height: 25,
-                          width: 1.5,
-                          color: Colors.grey,
-                        ),
-                        IconButton(onPressed: (){}, icon:Icon(Icons.keyboard_option_key_outlined)),
-                      ],
-                    ),
-
+                                border: InputBorder.none),
+                          )),
+                      Container(
+                        height: 25,
+                        width: 1.5,
+                        color: Colors.grey,
+                      ),
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.keyboard_option_key_outlined)),
+                    ],
                   ),
                 ),
-
-                SizedBox(height: 20),
-                Stack(
-                  children: [
-                    Container(
-                      height: 200,
-                      width: double.infinity,
-                      child: PageView.builder(
-                        onPageChanged: (value){
-                          setState(() {
-                            currentSlide=value;
-                          });
-                        },
-                        itemCount: 4,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: 200,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(image: AssetImage("images/Banner_5_jpg.jpg"),fit: BoxFit.fill)
-                                ),
-                              ),
-                            );
-                          },),
-                    ),
-                    Positioned.fill(
-                        bottom: 10,
-                        child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(4, (index) => AnimatedContainer(
-                            duration: Duration(milliseconds: 300),
-                          width:currentSlide == index ? 15 : 8,
-                          height: 8,
-                          margin: EdgeInsets.only(right: 3),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                              color:currentSlide == index ? Colors.black : Colors.transparent,
-                            border: Border.all(color: Colors.black)
+              ),
+              SizedBox(height: 20),
+              Stack(
+                children: [
+                  Container(
+                    height: 200,
+                    width: double.infinity,
+                    child: PageView.builder(
+                      onPageChanged: (value) {
+                        setState(() {
+                          currentSlide = value;
+                        });
+                      },
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 200,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                    image:
+                                        AssetImage("images/Banner_5_jpg.jpg"),
+                                    fit: BoxFit.fill)),
                           ),
-                        )
+                        );
+                      },
+                    ),
+                  ),
+                  Positioned.fill(
+                      bottom: 10,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                              4,
+                              (index) => AnimatedContainer(
+                                    duration: Duration(milliseconds: 300),
+                                    width: currentSlide == index ? 15 : 8,
+                                    height: 8,
+                                    margin: EdgeInsets.only(right: 3),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: currentSlide == index
+                                            ? Colors.black
+                                            : Colors.transparent,
+                                        border:
+                                            Border.all(color: Colors.black)),
+                                  )),
                         ),
-
-                      ),
-                    ))
-                  ],
-                ),
-
-
-
-                SizedBox(
-                  height: 20,
-                ),
-                showItem(),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(height: 270, child: allItems()),
-                SizedBox(
-                  height: 20,
-                ),
-                allItemsvertically()
-              ],
-            ),
+                      ))
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              showItem(),
+              SizedBox(
+                height: 20,
+              ),
+              Container(height: 270, child: allItems()),
+              SizedBox(
+                height: 20,
+              ),
+              allItemsvertically()
+            ],
           ),
-        )
-      ),
+        ),
+      )),
     );
   }
 

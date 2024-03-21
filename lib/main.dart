@@ -5,6 +5,7 @@ import 'package:foodorderingapp/admi/admin_homepage.dart';
 import 'package:foodorderingapp/admi/admin_login.dart';
 import 'package:foodorderingapp/bottomnavbar.dart';
 import 'package:foodorderingapp/login_page.dart';
+import 'package:foodorderingapp/signup.dart';
 import 'package:foodorderingapp/wallet.dart';
 
 void main() async {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.cyan),
       debugShowCheckedModeBanner: false,
-      home: bottomnavbar(),
+      home: login(),
     );
   }
 }

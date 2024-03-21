@@ -20,22 +20,23 @@ class insert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        controller: store,
-        validator: validators,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: fillColor,
-          prefixIconColor: Colors.green[900],
-          prefixIcon: logo,
-          suffixIconColor: Colors.green[900],
-          suffixIcon: suffixIcon,
-          labelText: clue,
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              borderSide: BorderSide(color: Colors.black)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              borderSide: BorderSide(color: Colors.black)),
-        ));
+      controller: store,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: fillColor,
+        prefixIconColor: Colors.green[900],
+        prefixIcon: logo,
+        suffixIconColor: Colors.green[900],
+        suffixIcon: suffixIcon,
+        labelText: clue,
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderSide: BorderSide(color: Colors.black)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderSide: BorderSide(color: Colors.black)),
+      ),
+      validator: validators,
+    );
   }
 }

@@ -21,123 +21,158 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            pinned: true,
-            floating: true,
-            expandedHeight: 200.0,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Image(
-                image: AssetImage("images/saladback.jpg"),
-                fit: BoxFit.fill,
+      body: Form(
+        key: _formKey,
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              pinned: true,
+              floating: true,
+              expandedHeight: 200.0,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image(
+                  image: AssetImage("images/saladback.jpg"),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text("Please sign up to continue",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green[900])),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: insert(
-                        validators: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Name';
-                          }
-                          return null;
-                        },
-                        store: signname,
-                        logo: Icon(Icons.perm_contact_cal_sharp),
-                        clue: 'First Name'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: insert(
-                        validators: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Email';
-                          }
-                          return null;
-                        },
-                        store: signemail,
-                        logo: Icon(Icons.email_outlined),
-                        clue: 'Email'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: insert(
-                      validators: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please Enter Password';
-                        }
-                        return null;
-                      },
-                      store: signpassword,
-                      logo: Icon(Icons.password_outlined),
-                      clue: 'Password',
-                      suffixIcon: Icon(Icons.visibility_off_outlined),
+            SliverToBoxAdapter(
+              child: Container(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: insert(
-                      validators: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please Re enter Password';
-                        }
-                        return null;
-                      },
-                      store: signconpassword,
-                      logo: Icon(Icons.password_outlined),
-                      clue: ' Re enter Password',
-                      suffixIcon: Icon(Icons.visibility_off_outlined),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 40,
-                    width: 310,
-                    child: MaterialButton(
-                      color: Colors.green[900],
-                      onPressed: () {
-                        signInUser(context);
-                      },
-                      child: Text(
-                        "Sign Up",
+                    Text("Please sign up to continue",
                         style: TextStyle(
                             fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green[900])),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: insert(
+                        store: signname,
+                        fillColor: Colors.green[100],
+                        logo: Icon(Icons.perm_contact_cal_sharp),
+                        clue: 'First Name',
+                        validators: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Cancel')),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: insert(
+                        store: signemail,
+                        fillColor: Colors.green[100],
+                        logo: Icon(Icons.email_outlined),
+                        clue: 'Email',
+                        validators: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          controller: signpassword,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.green[100],
+                            prefixIconColor: Colors.green[900],
+                            prefixIcon: Icon(Icons.password_outlined),
+                            suffixIconColor: Colors.green[900],
+                            labelText: "Password",
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                borderSide: BorderSide(color: Colors.black)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                borderSide: BorderSide(color: Colors.black)),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter a password';
+                            }
+                            return null;
+                          },
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          controller: signconpassword,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.green[100],
+                            prefixIconColor: Colors.green[900],
+                            prefixIcon: Icon(Icons.password_outlined),
+                            suffixIconColor: Colors.green[900],
+                            labelText: "Re enter Password",
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                borderSide: BorderSide(color: Colors.black)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                borderSide: BorderSide(color: Colors.black)),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter a password';
+                            }
+                            return null;
+                          },
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      height: 40,
+                      width: 310,
+                      child: MaterialButton(
+                        color: Colors.green[900],
+                        onPressed: () {
+                          signInUser(context);
+                        },
+                        child: Text(
+                          "Sign Up",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('Cancel')),
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
