@@ -79,8 +79,7 @@ class _SplashScreenState extends State<SplashScreen> {
               },
               child: Text('Get Started'),
               style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                onPrimary: Colors.orangeAccent,
+                foregroundColor: Colors.orangeAccent, backgroundColor: Colors.white,
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               ),
             ),
